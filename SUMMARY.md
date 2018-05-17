@@ -6,5 +6,5 @@
 * [Mid Level Data Types](mid-level-data-types.md)
 * [Advanced Data Types](advanced-data-types.md)
 * [Understanding Modules](modules.md)
-* [Understanding Promises](understanding-promises.md)
+* [Understanding Promises](promises.md)
 
