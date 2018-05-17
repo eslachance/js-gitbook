@@ -41,7 +41,7 @@ Hello, World!
 > _
 ```
 
-Let's explain exacly why, and how a module "replaces" regular code. You could write the exact same code in a single file as such:
+Let's explain exactly why, and how a module "replaces" regular code. You could write the exact same code in a single file as such:
 
 ```javascript
 console.log("Start Testing");
@@ -84,14 +84,14 @@ As you can see, there really isn't that much to it. Creating a module with a sin
 
 ## Module Scoping
 
-Ok so, one thing that's really cool about modules is that you can use other modules into them. I'm going to go _a little too far_ into code complexity right now by creating a simple module that gets a random cat image from an online API that's literally called "Random Cat". Bear with me for a second:
+Ok so, one thing that's really cool about modules is that you can use other modules in them. I'm going to go _a little too far_ into code complexity right now by creating a simple module that gets a random cat image from an online API that's literally called "Random Cat". Bear with me for a second:
 
 ```javascript
 // randomcat.js
 const snekfetch = require("snekfetch");
 
 module.exports = async () => {
-  const response = await snekfetch.get("http://random.cat/meow");
+  const response = await snekfetch.get("http://aws.random.cat/meow");
   return response.body.file;
 }
 ```
@@ -106,26 +106,29 @@ Ok so, what am I doing here? First off, I'm requiring `snekfetch`, [a simple, fa
 
 Another thing you might notice is that the line that requires snekfetch is outside of the actual module exports, but... why? Well, here's the thing: When you require a module, the whole file is "parsed" once \(in other words, it's executed\). Anything you define in that file is still defined as usual _except that it's only available in that module_. So, snekfetch is only available from the `randomcat.js` file and you can't call it from outside. As far as `randomcat.js` is concerned, it's providing a single function that returns a file, and that's it.
 
-So if you define strings, objects, arrays, or whatever else outside of your module and they'll be "private" to that module! It makes it a self-contained entity that can only interact and be interacted with in specific manners.
+So if you define strings, objects, arrays, or whatever else outside of your module and they'll be "private" to that module! It makes it a self-contained entity that can only interact and be interacted with using specific methods you define yourself.
 
 ## Multiple Returns
 
-Now that we've seen modules in their simplest forms, we're ready to thrown in another requirement into the mix: We want to be able to add more than one thing to this module. Say we have a "utility" module that has a couple functions we like to use in our applications. Let's make _that_!
+Now that we've seen modules in their simplest forms, we're ready to thrown in another requirement into the mix: we want to be able to add more than one thing to this module. Say we want a "utility" module that has a couple functions we like to use in a lot of our applications. Let's make _that_!
 
 ```javascript
 // utils.js
 module.exports = "A utility Module by Evie";
 
+// Turn A String Into Proper Case Like Those Annoying People On The Internet
 module.exports.toProperCase = (myString) => {
   return myString.replace(/([^\W_]+[^\s-]*) */g, (txt) => {
    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
 }
 
+// Get a random element from an array.
 module.exports.arrayRandom = (myArray) => {
   return myArray[Math.floor(Math.random() * myArray.length)];
 }
 
+// The most basic function of all!
 module.exports.helloWorld = (name) => {
   return "Hello, " + name + ", to this world!";
 }
