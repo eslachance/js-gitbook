@@ -13,6 +13,7 @@ First let's address **readability**: a complex program, even written in node.js,
 The second issue is **portability**. Programmers don't generally re-write everything from the ground up every time we start up a new project, right? We re-use parts of our code throughout various applications, and sometimes even update that code in multiple applications at once when we find an issue with it. By creating a module, this makes it easier: if you have a module file you plop in and require in multiple projects, just overwrite that file and boom, you're done!
 
 There's also the idea of **distributing** modules. However, this is beyond the scope of this guide. If you're interested, check out [Publishing NPM Packages on npmjs.org](https://docs.npmjs.com/getting-started/publishing-npm-packages).
+
 ## Our First Module
 
 Ok so, let's start with the super basic, and yet not very useful, module that returns a static string. For a moment imagine you have a folder called `myTest` and in this folder, you have 2 files: `index.js` and `myModule.js`.
@@ -323,3 +324,8 @@ You can also require files from other projects by going up folders. So if I have
 ### Publishing Modules/Libraries
 
 I've touched upon publishing in my introduction. Publishing modules is done on NPM \(though the node community wants to enable requires from an HTTP page, that's not doable yet\), and anyone can publish a module, if the name is unique. To "install" a published library you just need to use npm. For example, in the random cat example I use snekfetch, which needs to be installed using `npm install snekfetch`. An installed library doesn't use a "path" or a .js extension so it's `require("snekfetch")` instead of, say, `require("./snekfetch.js")`.
+
+But what if you've made a cool little library like `utils` above and you want everyone to be able to use it just like snekfetch? Then you can do that on NPM! Won't cost you a dime, and it will mean you, or anyone else, can install it as you want. 
+
+But, this is a JavaScript and Node guide, and people have expalined it _much_ better than I have! Please see [this guide on npmjs.com](https://docs.npmjs.com/getting-started/publishing-npm-packages)! It should help you out in publishing ;\)
+
