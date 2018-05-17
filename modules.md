@@ -57,7 +57,7 @@ Obviously, having a module return a static string isn't super useful. So, most l
 
 ```javascript
 const hello = (name) => {
- return "Hello, " + name + ", to this world!";
+ return `Hello, ${name}, to this world!`;
 }
 
 const message = hello("John");
@@ -69,7 +69,7 @@ Let's take this simple hello module containing that function instead, just to se
 ```javascript
 // helloWorld.js
 module.exports = (name) => {
- return "Hello, " + name + ", to this world!";
+ return `Hello, ${name}, to this world!`;
 }
 ```
 
@@ -130,7 +130,7 @@ module.exports.arrayRandom = (myArray) => {
 
 // The most basic function of all!
 module.exports.helloWorld = (name) => {
-  return "Hello, " + name + ", to this world!";
+  return `Hello, ${name}, to this world!`;
 }
 ```
 
