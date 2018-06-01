@@ -23,6 +23,8 @@ const concatString = escapedSingle + " I'm in the middle " + escapedDouble;
 myString += " and I've added to myString now!";
 ```
 
+> There are more complex strings called Template Literals, used amongst other things for better string concatenation, but they deserve their own page so [head on over there to learn more about them](template-literals.md)!
+
 ### Integers and Numbers
 
 Numbers are somewhat limited in JavaScript, in the sense that JS only supports "32-bit integers". Not often will that really be an issue as this means the maximum integer size is `9007199254740991`. JavaScript also supports Float values, obviously. 
