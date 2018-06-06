@@ -175,11 +175,13 @@ It's important to note that to the contrary of _callback_ functions, a promise c
 There is also a secondary way of creating a promise. As I mentioned earlier, creating an async function will automatically create a promise. However, because you're not able to define the `resolve()` and `reject()` methods, you can simply trigger the promise's `then()` through a `return`, and you can trigger a `catch()` by throwing an error. Here's the same function as above, using this concept: 
 
 ```javascript
-const underAged = asunc (myAge) => {
+const underAged = async (myAge) => {
   if(myAge >= 18) return "Here's your drink!";
   else throw new Error("I can't serve you alcohol!");
 }
 ```
 
 
+
+Hopefully, now you've learned enough about promises to do some great things with them!
 
