@@ -152,7 +152,7 @@ So now you should \(if I'm as good a teacher as I think\) know how to _use_ prom
 ```javascript
 const underAged = (myAge) => {
   return new Promise( (resolve, reject) => {
-    if(myArg < 18) {
+    if(myAge < 18) {
       resolve("I can't serve you alcohol");
     } else {
       reject("Here's your drink!");
