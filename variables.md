@@ -25,7 +25,7 @@ changeMeLater = "Oh cool I have a value now!"
 // of objects and arrays (see "Data Types" below) can be modified. You'll see this
 // better in context later on.
 const notReallyConstant = "I cannot be modified";
-noTreallyConstant = "This will fail";
+notReallyConstant = "This will fail";
 ```
 
 Let's break down a single line here to look at the syntax: 
