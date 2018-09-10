@@ -1,3 +1,9 @@
+---
+description: >-
+  The very basics of JavaScript: How to save something inside a little token
+  contained called a "variable"!
+---
+
 # Variables
 
 Let's assume for a second that you've never heard of JavaScript, you don't know the terminology or the syntax, you're basically starting from scratch. This page presents the most basic stuff you'll encounter. 

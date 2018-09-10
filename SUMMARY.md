@@ -8,4 +8,5 @@
 * [Template Literals](template-literals.md)
 * [Understanding Modules](modules.md)
 * [Understanding Promises](promises.md)
+* [Understanding Functions](understanding-functions.md)
 

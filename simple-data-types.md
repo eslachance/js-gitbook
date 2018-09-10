@@ -1,3 +1,9 @@
+---
+description: >-
+  Let's explore the basic data types in JavaScript: strings, numbers, booleans,
+  null.
+---
+
 # Simple Data Types
 
 In our previous example we used _strings_ as values for our variables. But, of course, JavaScript has a lot more to offer than just these series of characters, though! Let's take a look at the various _simple_ data types available in the langauge. 
