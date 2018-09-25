@@ -1,6 +1,12 @@
+---
+description: >-
+  I promise you'll have fun learning these - let's take a look at asyncroneous
+  promises, how to resolve them, use async, and even how to make your own.
+---
+
 # Understanding Promises
 
-In your endeavours learning and using JavaScript you will encounter a thing called a _Promise_. Like the name kinda sorta implies, a promise is something that happens in the future \(and, in fact, they're called _Futures_ in other languages, cool fact!\).
+In your endeavours learning and using JavaScript you will encounter a thing called a _Promise_. Like the name kinda sorta implies, a promise is something that happens in the future \(and, in fact, they're sometimes called _Futures_ in other languages!\).
 
 The way I like to looks at promises is basically that they're an "IOU". You give a promise something to do and it _owes_ you a response later on in your code. When it's ready, it pays you back with an answer!
 

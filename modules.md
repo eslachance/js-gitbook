@@ -1,3 +1,10 @@
+---
+description: >-
+  A module is a js file that can be called from other files and used. Most
+  things you use in node become modules and they have to be if they're to be
+  published on npm. Let's learn how to make them.
+---
+
 # Understanding Modules
 
 In this guide we'll be taking a look specifically at how to create a module for node.js starting from extremely basic one-line all the way to explaining complex implementations with multiple functionality. But don't worry, we'll keep it as simple as possible!

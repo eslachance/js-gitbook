@@ -1,6 +1,6 @@
 # Template Literals
 
-Strings are all well and good, but sometimes they're a little awkard when wanting to mix strings and variables. Ever seen something like this shitty code? 
+Strings are all well and good, but sometimes they're a little awkard when wanting to mix strings and variables. Ever seen something like this code? 
 
 ```javascript
 console.log("There are " + getCount() + " things in the " + getName() + " collection");
