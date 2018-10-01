@@ -61,6 +61,24 @@ Rember that because in JavaScript you can replace the _callback_ portion of the 
 myPromiseFunction().then(console.log).catch(console.error);
 ```
 
+## Resolving multiple promises
+
+What if you have multiple promises that need to be resolved before you do something? For example, what if you have a loop and inside that loop you're calling a promise function. There is an easy way to make sure all those promises are resolved before moving forward: `Promise.all()`. This method takes in an array of promises, and will resolve when every promise in that array is resolved. 
+
+So let's say we have a for loop, with a promise inside. Here's how you can use `Promise.all()` to, _ahem_, _resolve the problem_... 
+
+```javascript
+const promises = [];
+for(let i = 0; i < 10; i++) {
+  promises.push(myPromiseFunction(args));
+}
+Promise.all(promises).then(results => {
+  // results is an array of the data resulting from each promise
+}).catch(errors => {
+  // errors is an array of any error that happened on any of the promises.
+});
+```
+
 ## Async/Await
 
 Async/Await is a relatively new feature in Node, which was added in version 7.6. It offers the great advantage of being able to simplify your code by removing the need for a .then\(\) method, and simply "returning the value" instead of a promise. The second advantage is that using async/await means you can write code sequentially as if you weren't even using promises, so you don't need to write everything in the then\(\) method itself!
