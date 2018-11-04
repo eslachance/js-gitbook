@@ -9,5 +9,5 @@
 * [Understanding Modules](modules.md)
 * [Understanding Promises](promises.md)
 * [Understanding Functions](functions.md)
-* [Understanding Classes](understanding-classes.md)
+* [Understanding Classes](classes.md)
 

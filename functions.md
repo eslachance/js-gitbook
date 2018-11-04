@@ -67,6 +67,22 @@ function add(a, b) {
 
 The above will return `false` if either the `a` or `b` parameter is missing. The `a+b` line will simply never even be executed, which can save a lot of processing power in larger code.
 
+### Optional Arguments
+
+In the previous examples, `a` and `b` were _required_ arguments, meaning that you could not call the add function without both arguments being present \(otherwise, they would be `null` and our calculation would fail\). You can, however, give a function _optional_ arguments with a default value assigned. 
+
+Let's say we want `add()` to increment by 1 only, if the second value is not present, instead of stopping the function. This is done by assigning a default value to `b` when we create the function: 
+
+```javascript
+function add(a, b = 1) {
+  // We're still stopping the function if a is missing)
+  if(!a) return false; 
+  return a + b;
+}
+
+console.log(add(5)); // 6
+```
+
 ### ES6 functions
 
 In ES6 \(Or ECMAScript 6\), functions can have a slightly different look, using the "arrow functions". They are still assigned to a variable usually, in the following syntax: 
