@@ -55,7 +55,7 @@ myPromiseFunction(args).then(response => {
 });
 ```
 
-Rember that because in JavaScript you can replace the _callback_ portion of the above code with an actual function, you could do something like this:
+Remeber that because in JavaScript you can replace the _callback_ portion of the above code with an actual function, you could do something like this:
 
 ```javascript
 myPromiseFunction().then(console.log).catch(console.error);

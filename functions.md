@@ -110,7 +110,7 @@ const add = (arg1, arg2) => arg1 + arg2;
 
 #### This keyword is not overwritten
 
-Mostly useful in relation to class inheritance. `this` , in regular functions, refers to the function itself, meaning `this.thing = blah` will add that property to the function or method. However, the ES6 arrow function does not overwrite `this` so it refersr to the upper scope. This is all technobabble to some, but if you know how to work with classes and modules, you'll understand why this is useful. 
+Mostly useful in relation to class inheritance. `this` , in regular functions, refers to the function itself, meaning `this.thing = blah` will add that property to the function or method. However, the ES6 arrow function does not overwrite `this` so it refers to the upper scope. This is all technobabble to some, but if you know how to work with classes and modules, you'll understand why this is useful. 
 
 #### Single-argument functions are simpler
 
