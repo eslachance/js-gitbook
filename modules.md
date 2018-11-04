@@ -13,7 +13,7 @@ In this guide we'll be taking a look specifically at how to create a module for 
 In this guide as all my others, I use the latest JavaScript syntax available, which can variably called ES6, ES2017, or "Node" JavaScript. For instance, I use `const functionName = (arg) => {}` to create functions, which is the "fat arrow" way of doing things. I apologize if you're not used to this, check out [this article for more info](https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/)!
 {% endhint %}
 
-## What's a module? {#whats-a-module}
+## What's a module? <a id="whats-a-module"></a>
 
 A "module" in node.js is a separate file \(or group of files\) containing "things" that we can use in another file. Modules can contain functions, variables, classes, basically anything that node.js code can contain. So you might ask, why use a module at all if I can just write all my code in a single file? It's about two things: readability, and portability.
 
