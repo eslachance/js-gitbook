@@ -1,12 +1,16 @@
 ---
 description: >-
   Classes are a blueprint to making "things" with common properties and methods.
-  Gather around, class, let's get to work buidling them!
+  Gather around, class, let's get to work building them!
 ---
 
 # Understanding Classes
 
 A "Class", in any programming language, is essentially defined as a _blueprint_ on which you can build multiple _instances_ \("copies of"\) that all share the same basic traits. These traits include _properties_ and _methods_. 
+
+### Why use Classes?
+
+
 
 ### Creating a Class
 
