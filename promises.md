@@ -23,9 +23,9 @@ So, the first thing you'll notice when using promises, is that to get the value,
 When I said "it takes a moment", what I mean to say is that the `answer` itself is not available directly after this line has run. This means that the following code _**will not work**_:
 
 ```javascript
-let answer;
+let answer = undefined;
 mathAdd(2, 2).then(res => answer = res);
-console.log(answer); // logs `null`;
+console.log(answer); // logs `undefined`;
 ```
 
 This is because the promise can take a few milliseconds or a few minutes, it makes no difference, the line _after_ it \(the console log\) will run before the promise has resolved. So for now, you have to remember that your code needs to be inside of the .then\(\) callback. My above examples were a bit of a shortcut, so let's do this with a more complete example and a full function.
@@ -103,15 +103,12 @@ async function myFunc() {
 Where async/await functions shine is when you need to chain multiple promises together to ultimately get your data. Let's take this example:
 
 ```javascript
-getData().then(a => { 
-  getMoreData(a).then(b => {
-    getMoreEvenMoreData(b).then(c => {
-      getUltimateData(c).then(d => {
-        console.log(d);
-      });
-    });
-  });
-});
+getData()
+.then(getMoreData)
+.then(getMoreEvenMoreData)
+.then(getUltimateData)
+.then(console.log)
+.catch(console.error);
 ```
 
 This is something that people often call "callback hell", or in this case, "promise hell". Async/await makes this much more simple, assuming you're already in an async function:
@@ -143,7 +140,7 @@ async function myFunc() {
     // and you can also RETURN this!
     return d;
   } catch(err) {
-    console.error("An error occured: " + e);
+    console.error(`An error occured: ${e}`);
   }
 }
 ```
