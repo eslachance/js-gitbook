@@ -169,6 +169,29 @@ someFunction("myArg", async (response) => {
 });
 ```
 
+Async offers one final advantage: it lets you "return a value" from within a promise callback. Ok that's one of these sentences you can only understand when you know what it's talking about so let's show an example. Think about a situation where a promise function would return a very large object or result and you only wanted part of it. In order to get that part, you could do something like this, right?
+
+```javascript
+const getUser = async id => {
+    const response = await getFromUrl(`${baseUrl}/user?id=${id}`);
+    const theUsername = response.author.username;
+    const parsedData = await getUserFromUsername(theUsername);
+    return parsedData;
+}
+```
+
+Now, there is a way to get the username from that response without needing a secondary variable, or even without having the entire object available to you - you can return from inside the promise callback. _"WAIT WHAT?",_ you might ask, thinking you can never return inside a callback? Well yes usually but here is a special case. You can actually _chain_ promises together, and each promise can use the return value of the previous promise. And because of how async/await works you can take advantage of this, just so: 
+
+```javascript
+const getUser = async someValue => {
+    const user = await getFromUrl(`${baseUrl}/user?id=${id}`)
+        .then(response => response.author.username);
+    return await getUserFromUsername(user);
+}
+```
+
+\(Remember from [Understanding Functions](functions.md#es6-functions), ES6 arrow functions return automatically!\)
+
 ## Build Your Own Promise
 
 So now you should \(if I'm as good a teacher as I think\) know how to _use_ promises, but what about _making_ them? It honestly took some time even for me to wrap my head around creating promises but I'll try to make it as simple as possible. Let's make a _really_ simple function that returns a promise:
