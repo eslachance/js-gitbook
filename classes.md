@@ -10,7 +10,9 @@ A "Class", in any programming language, is essentially defined as a _blueprint_ 
 
 ### Why use Classes?
 
+Classes are a great way to prevent code duplication, and to greatly simplify how you deal with multiple copies of a single "type" of thing. So let's say you have a bunch of "User" objects in your code - you probably have a bunch of methods to deal with those users: creating them, updating them, deleting them, etc. With a class, you can do things like `SomeUser.delete()` or `SomeUser.login(username, password)` and other useful things.
 
+It makes your code cleaner, more efficient, and easier to read!
 
 ### Creating a Class
 
