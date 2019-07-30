@@ -30,8 +30,12 @@ changeMeLater = "Oh cool I have a value now!"
 // The "const" keyword defines a variable that can't change type but, in the case
 // of objects and arrays (see "Data Types" below) can be modified. You'll see this
 // better in context later on.
-const notReallyConstant = "I cannot be modified";
-noTreallyConstant = "This will fail";
+const actuallyConstant = "I cannot be modified";
+actuallyConstant = "This will fail";
+
+const notReallyConstant = { blah : "foo" };
+notReallyConstant.blah = "meh";
+notReallyConstant.thing = "thing2";
 ```
 
 Let's break down a single line here to look at the syntax: 

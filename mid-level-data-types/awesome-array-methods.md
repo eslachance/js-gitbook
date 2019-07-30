@@ -102,6 +102,10 @@ The Boolean function returns false on empty strings `''` or the number `0` so be
 
 \[ TBD cuz lazy right now \]
 
+## Array.some\(\)
+
+\[ TBD cuz lazy right now \]
+
 ## Array.includes\(\)
 
 \[ TBD cuz lazy right now \]
