@@ -90,7 +90,7 @@ The caveat is that using the await keyword requires that the function using it b
 function myFunc() {
   myPromiseFunction().then(response => {
     console.log(response);
-  }
+  });
 }
 
 // async version
