@@ -20,7 +20,7 @@ if( name === "Bob" ) {
 }
 ```
 
-So here we have a condition that checks: "If the name is EXACTLY Bob, say hi to bob. Otherwise, say hi to whoever the hell this is". As a reminder, that fancy thing that says "hello, name." is a [Template Literal](template-literals.md). 
+So here we have a condition that checks: "If the name is EXACTLY Bob, say hi to bob. Otherwise, say hi to whoever the hell this is". As a reminder, that fancy thing that says "hello, name." is a [Template Literal](simple-data-types/template-literals.md). 
 
 ### Conditions are a Scope
 

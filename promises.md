@@ -8,7 +8,7 @@ description: >-
 
 In your endeavours learning and using JavaScript you will encounter a thing called a _Promise_. Like the name kinda sorta implies, a promise is something that happens in the future \(and, in fact, they're sometimes called _Futures_ in other languages!\).
 
-The way I like to looks at promises is basically that they're an "IOU". You give a promise something to do and it _owes_ you a response later on in your code. When it's ready, it pays you back with an answer!
+The way I like to look at promises is basically that they're an "IOU". You give a promise something to do and it _owes_ you a response later on in your code. When it's ready, it pays you back with an answer!
 
 ## Basic Promises
 
