@@ -6,7 +6,7 @@ description: >-
 
 # Simple Data Types
 
-In our previous example we used _strings_ as values for our variables. But, of course, JavaScript has a lot more to offer than just these series of characters, though! Let's take a look at the various _simple_ data types available in the langauge. 
+In our previous example we used _strings_ as values for our variables. But, of course, JavaScript has a lot more to offer than just these series of characters, though! Let's take a look at the various _simple_ data types available in the language. 
 
 ### Strings
 
@@ -29,7 +29,18 @@ const concatString = escapedSingle + " I'm in the middle " + escapedDouble;
 myString += " and I've added to myString now!";
 ```
 
-> There are more complex strings called Template Literals, used amongst other things for better string concatenation, but they deserve their own page so [head on over there to learn more about them](template-literals.md)!
+### Single, Double, Backtick???
+
+A fairly common question is to wonder why JavaScript has both single and double-quotes, and when to use them. In some other languages this matters, but in JavaScript it doesn't - single and double quotes will function in literally the same way, they have no functional differences. 
+
+The above code example shows the use of both single and double quotes and how to escape them, but the other thing you can do is also use the "opposite" quote to simplify string. 
+
+```javascript
+const str1 = 'This is "a string" with no escapes';
+const str2 = "Let's do it the other way!";
+```
+
+So what about the backtick? You might have seen those. They're used in a different concept called Template Literals. They're used to merge things together, but they're a bit more complicated and deserve their own page, so [head on over there to learn more about them](template-literals.md)!
 
 ### Integers and Numbers
 
