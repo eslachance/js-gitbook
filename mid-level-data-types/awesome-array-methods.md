@@ -40,7 +40,7 @@ const startArray = [ 'bleh', 'foo', 'MoOoO', 'supercalifrag' ];
 const upperArray = startArray.map( word => word.toUpperCase() );
 ```
 
-No isn't that nicely short & sweet? Can you think of anything else that map\(\) can be used for?
+Now isn't that nicely short & sweet? Can you think of anything else that map\(\) can be used for?
 
 ## Array.filter\(\)
 
@@ -86,9 +86,74 @@ You can of course use any function that expects an input and returns a boolean v
 The Boolean function returns false on empty strings `''` or the number `0` so be careful when you use it!
 {% endhint %}
 
+## Array.includes\(\)
+
+Array.includes\(\) is a very simple method of checking whether a value is included inside an array. Very simply put, if you have an array of values, you can know if it includes a particular value or not. This returns a boolean, so it's very often used in conditions.
+
+```javascript
+const someNumbers = [ 1, 2, 61, 332, 5643, 42, 0, 111 ];
+
+console.log(someNumbers.includes(1)); // true
+console.log(someNumbers.includes(42)); // true
+
+if(someNumbers.includes(5)) {
+  console.log("5 Conditions make the world go round, blah!"); // won't print
+}
+```
+
+Array.includes can also be very useful to verify if a string is equal to "one of many choices". As mentioned in [Combining Conditions](../conditions.md#conditions-can-be-combined), it replaces the pattern `if(thing === "blah" || thing === "foo")`, in the following manner: 
+
+```javascript
+const string = "hi";
+
+if(["hey", "hello", "hi", "wazaaap"].includes(string)) {
+  // will be true since the array includes "hi"
+}
+```
+
 ## Array.reduce\(\)
 
-\[ TBD cuz lazy right now \]
+Array.reduce\(\) is essentially used to "add together" things from an array, used in concepts such as counters or concatenation of specific strings. It works by accepting a function with 2 useful parameters: `accumulator` and `currentvalue`. It also takes a second parameter, the default value, which is sent to the accumulator variable on the initial iteration of the loop. Also, enough fancy words, let's look at some code!
+
+```javascript
+const arr = [1, 2, 3, 4, 5];
+
+const total = arr.reduce( (acc, current) => acc + current );
+console.log(total); // 15
+```
+
+So, obviously this code is adding each number in the array to the accumulated value, right? You get an accumulated value of 1, then 3, then 6, 10 and finally 15. Simple as that. 
+
+Sounds boring though, let's make it a bit more exciting. Arrays can contain objects, and we can also use that to our advantage. Let's say we have an array containing data about groups. Each group can contain multiple users, and those users are in an array in the object. Our goal now is to find the total number of users for all the groups. Let's do that: 
+
+```javascript
+const groups = [
+ {
+   name: 'Legends',
+   users: [ "Ripp", "Ray", "Sara", "Martin", "Jefferson", "Kendra", "Carter"],
+   leader: "Ripp"
+ },
+ {
+   name: 'Fantasic',
+   users: [ "Reed", "Susan", "Johnny", "Ben"],
+   leader: "Reed"
+ },
+ {
+   name: 'Avengers',
+   users: [ "Steve", "Tony", "Thor", "Clint", "Natasha", "Peter"],
+   leader: "Tony"
+ }
+];
+
+const superheroes = groups.reduce( (acc, group) => acc + group.users.length, 0);
+console.log(superheroes); // 17
+```
+
+The default value here is due to the array containing objects - the reduce function must have a 0 value so that additions will be integer additions, and not just objects or strings or something else.
+
+{% hint style="info" %}
+The reduce function adds two other arguments not used in my example: currentIndex and array. Those contain the current iteration loop index and the initial input array, if you ever need those things in your function!
+{% endhint %}
 
 ## Array.sort\(\)
 
@@ -96,7 +161,7 @@ The Boolean function returns false on empty strings `''` or the number `0` so be
 
 ## Array.find\(\)
 
-\[ TBD cuz lazy right now  \]
+This one is really simple. Array.find\(\) is exactly the same as array.filter, except that when it finds a result \(when the condition returns true\), it will return the value from the current iteration, and stop the loop. So, it takes the same kind of function as Array.filter\(\) but instead of returning an array of values, it returns the first value. If you want to only get one value, this is more efficient than using filter\(\) then getting the first from it. Good? Good!
 
 ## Array.every\(\)
 
@@ -106,7 +171,5 @@ The Boolean function returns false on empty strings `''` or the number `0` so be
 
 \[ TBD cuz lazy right now \]
 
-## Array.includes\(\)
 
-\[ TBD cuz lazy right now \]
 
