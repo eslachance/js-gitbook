@@ -1,10 +1,12 @@
 # Template Literals
 
-Strings are all well and good, but sometimes they're a little awkard when wanting to mix strings and variables. Ever seen something like this code? 
+Strings are all well and good, but sometimes they're a little awkward when wanting to mix strings and variables. Ever seen something like this code? 
 
 ```javascript
 console.log("There are " + getCount() + " things in the " + getName() + " collection");
 ```
+
+### When to use them
 
 Template literals are here to save the day. Here's the same string, using them: 
 
@@ -14,7 +16,9 @@ console.log(`There are ${getCount()} things in the ${getName()} collection`);
 
 There are 2 things you will notice here. First, template literals don't use single or double quotes, but rather use ````` which are called "backticks" \(for you french language speakers, it's an "accent grave"\). The second, is that any variable or function is called using the ${} syntax \(they're called "placeholders"\). 
 
-Template literals should _only_ be used if you're misxing strings and variables, or if you're using tagged templates \(see below\). Since they're _processed_ strings, it means JavaScript evaluates it and that takes extra time. This means, the following examples are not only bad, they're also ridiculous. Most people will just scream at you if you do this: 
+### When you shouldn't use them
+
+Template literals should _only_ be used if you're mixing strings and variables, or if you're using tagged templates \(see below\). Since they're _processed_ strings, it means JavaScript evaluates it and that takes extra time. This means, the following examples are not only bad, they're also ridiculous. Most people will just scream at you if you do this: 
 
 ```javascript
 console.log(`${variable}`); // please don't!
