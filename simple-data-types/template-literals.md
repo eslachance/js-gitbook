@@ -1,6 +1,6 @@
 # Template Literals
 
-Strings are all well and good, but sometimes they're a little awkward when wanting to mix strings and variables. Ever seen something like this code? 
+Strings are all well and good, but sometimes they're a little awkward when wanting to mix strings and variables. Ever seen something like this code?&#x20;
 
 ```javascript
 console.log("There are " + getCount() + " things in the " + getName() + " collection");
@@ -8,17 +8,17 @@ console.log("There are " + getCount() + " things in the " + getName() + " collec
 
 ### When to use them
 
-Template literals are here to save the day. Here's the same string, using them: 
+Template literals are here to save the day. Here's the same string, using them:&#x20;
 
 ```javascript
 console.log(`There are ${getCount()} things in the ${getName()} collection`);
 ```
 
-There are 2 things you will notice here. First, template literals don't use single or double quotes, but rather use ````` which are called "backticks" \(for you french language speakers, it's an "accent grave"\). The second, is that any variable or function is called using the ${} syntax \(they're called "placeholders"\). 
+There are 2 things you will notice here. First, template literals don't use single or double quotes, but rather use `` ` `` which are called "backticks" (for you french language speakers, it's an "accent grave"). The second, is that any variable or function is called using the ${} syntax (they're called "placeholders").&#x20;
 
 ### When you shouldn't use them
 
-Template literals should _only_ be used if you're mixing strings and variables, or if you're using tagged templates \(see below\). Since they're _processed_ strings, it means JavaScript evaluates it and that takes extra time. This means, the following examples are not only bad, they're also ridiculous. Most people will just scream at you if you do this: 
+Template literals should _only_ be used if you're mixing strings and variables, or if you're using tagged templates (see below). Since they're _processed_ strings, it means JavaScript evaluates it and that takes extra time. This means, the following examples are not only bad, they're also ridiculous. Most people will just scream at you if you do this:&#x20;
 
 ```javascript
 console.log(`${variable}`); // please don't!
@@ -35,7 +35,7 @@ const commands = commandList.map(comm => `Name: ${comm.name}, uses: ${comm.uses}
       `Name: ${alias.name}, uses: ${alias.uses}`).join(" ; ")}`).join("\n");
 ```
 
-Now... this seems complicated, because nested templates are definitely not that simple, but I hope you get the idea, even if the code highlighting somewhat screwed the pooch on the colors here. The basic idea is that you can have functions inside of your template literal's placeholders that themselves contain template literals, and this works as one would expect. 
+Now... this seems complicated, because nested templates are definitely not that simple, but I hope you get the idea, even if the code highlighting somewhat screwed the pooch on the colors here. The basic idea is that you can have functions inside of your template literal's placeholders that themselves contain template literals, and this works as one would expect.&#x20;
 
 ### Tagged Templates
 
@@ -46,5 +46,4 @@ One other use for template literals beyond mixing variables and strings, are "ta
 const result = myFunction`This is a template literal with ${variables} and stuff`;
 ```
 
-However, wanting to write this section, I realize that I can't possibly explain this better than the [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) can. Check the "Tagged Templates" section of that page \(and/or read the whole thing, because it's a great documentation piece!\). 
-
+However, wanting to write this section, I realize that I can't possibly explain this better than the [MDN Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template\_literals) can. Check the "Tagged Templates" section of that page (and/or read the whole thing, because it's a great documentation piece!).&#x20;

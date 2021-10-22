@@ -6,7 +6,7 @@ description: >-
 
 # Understanding Classes
 
-A "Class", in any programming language, is essentially defined as a _blueprint_ on which you can build multiple _instances_ \("copies of"\) that all share the same basic traits. These traits include _properties_ and _methods_. 
+A "Class", in any programming language, is essentially defined as a _blueprint_ on which you can build multiple _instances_ ("copies of") that all share the same basic traits. These traits include _properties_ and _methods_.&#x20;
 
 ### Why use Classes?
 
@@ -16,7 +16,7 @@ It makes your code cleaner, more efficient, and easier to read!
 
 ### Creating a Class
 
-Taking a page from MDN, this is a very basic, simple class: 
+Taking a page from MDN, this is a very basic, simple class:&#x20;
 
 ```javascript
 class Rectangle {
@@ -27,15 +27,15 @@ class Rectangle {
 }
 ```
 
-Let's break this down into its parts: 
+Let's break this down into its parts:&#x20;
 
 * `class` is the keyword that triggers the creation of a class.
 * `Rectangle` is the _name_ of the class.
-* `constructor` is the [function ](functions.md)that runs when a new instance of the class is created.
-* `this` refers to the class instance itself \(in this context\). So, setting `this.height` will set the "height" property of the instance. 
-* `width` and `height` are class _properties_. They are a bit like an object property \(well, they are, since everything is an object in JavaScript\).
+* `constructor` is the [function ](functions/)that runs when a new instance of the class is created.
+* `this` refers to the class instance itself (in this context). So, setting `this.height` will set the "height" property of the instance.&#x20;
+* `width` and `height` are class _properties_. They are a bit like an object property (well, they are, since everything is an object in JavaScript).
 
-In order to create an instance, we use the `new` keyword, with the class. Here's an example with the above `Rectangle` class: 
+In order to create an instance, we use the `new` keyword, with the class. Here's an example with the above `Rectangle` class:&#x20;
 
 ```javascript
 const myRect = new Rectangle(10, 5);
@@ -46,9 +46,9 @@ console.log(myRect.width); // 5
 
 ### Methods
 
-The next thing to learn about a class is _methods_, which are functions attached to a class that will, usually, affect the class and its properties in some way. The syntax for methods is very slightly different from a normal function, in that you don't need the function keyword. Also, as a sidenote, there are no [arrow functions](functions.md#es6-functions) in method definitions for classes. 
+The next thing to learn about a class is _methods_, which are functions attached to a class that will, usually, affect the class and its properties in some way. The syntax for methods is very slightly different from a normal function, in that you don't need the function keyword. Also, as a sidenote, there are no [arrow functions](functions/#es6-functions) in method definitions for classes.&#x20;
 
-Definiting a method is done after the constructor: 
+Definiting a method is done after the constructor:&#x20;
 
 ```javascript
 class Rectangle {
@@ -73,7 +73,7 @@ class Rectangle {
 
 As you can see, `this` will also refer to the class instance in its methods. Modifying `this` properties changes it for the instance, not for the base class itself, since the base class is a blueprint only.
 
-Any instance of the class will now have those methods. For example: 
+Any instance of the class will now have those methods. For example:&#x20;
 
 ```javascript
 const myRect = new Rectangle(10, 5);
@@ -89,9 +89,9 @@ console.log(myRect.getArea()); // 40
 
 ### Extending Classes
 
-A class can _extend_ another class. An extended class will inherit the base classe's methods and properties by default, but each of those can be overwridden by the extended class. 
+A class can _extend_ another class. An extended class will inherit the base classe's methods and properties by default, but each of those can be overwridden by the extended class.&#x20;
 
-Let's create a new class called `Square` that extends `Rectangle` \(since a square is always a rectangle, but a rectangle isn't always a square\).
+Let's create a new class called `Square` that extends `Rectangle` (since a square is always a rectangle, but a rectangle isn't always a square).
 
 ```javascript
 class Square extends Rectangle {
@@ -131,9 +131,9 @@ console.log(mySquare.getArea()); // 25
 
 ### Getters and Setters
 
-While the `getArea()` method of course gets the area of the Square or Rectangle, there is an alternative way of doing things, using getters and setters. Essentially, a _Getter_ is a method that retrieves something from the class, while a _Setter_ is a method that changes a class property. Those methods can have calculations and a lot of steps beyond just returning a property. 
+While the `getArea()` method of course gets the area of the Square or Rectangle, there is an alternative way of doing things, using getters and setters. Essentially, a _Getter_ is a method that retrieves something from the class, while a _Setter_ is a method that changes a class property. Those methods can have calculations and a lot of steps beyond just returning a property.&#x20;
 
-So let's change our `getArea` method into a getter instead: 
+So let's change our `getArea` method into a getter instead:&#x20;
 
 ```javascript
 get area() {
@@ -141,7 +141,7 @@ get area() {
 }
 ```
 
-Doing this means that you can access `area` just like if it was a property, instead of calling the method, which can simplify code greatly for whoever is using that code: 
+Doing this means that you can access `area` just like if it was a property, instead of calling the method, which can simplify code greatly for whoever is using that code:&#x20;
 
 ```javascript
 const mySquare = new Square(5);
@@ -149,7 +149,7 @@ const mySquare = new Square(5);
 console.log(mySquare.area); // 25
 ```
 
-We can do something similar with a setter. However, it's important to note that you can't create a setter for a property of the same name. Basically, this is wrong: 
+We can do something similar with a setter. However, it's important to note that you can't create a setter for a property of the same name. Basically, this is wrong:&#x20;
 
 ```javascript
 // DO NOT USE THIS
@@ -172,7 +172,7 @@ class Rectangle {
 
 This results in an infinite loop, because doing `this.width = 10;`  will call the setter, which calls the setter...
 
-To resolve this, you have 2 different paths you can take: using Symbols, or "internal properties". 
+To resolve this, you have 2 different paths you can take: using Symbols, or "internal properties".&#x20;
 
 ```javascript
 // Using Symbols
@@ -215,15 +215,15 @@ class Rectangle {
 }
 ```
 
-So you might be asking "But Evie, which one do I use?" to which my answer would be: Symbols are probably the "easiest" way here. The reason I'm saying this is because those internal properties with an underscore... are still accessible to the end user \(to whatever code calls the class\), whereas Symbols aren't. I mean, technically they are if you work hard enough, but definitely not easily. 
+So you might be asking "But Evie, which one do I use?" to which my answer would be: Symbols are probably the "easiest" way here. The reason I'm saying this is because those internal properties with an underscore... are still accessible to the end user (to whatever code calls the class), whereas Symbols aren't. I mean, technically they are if you work hard enough, but definitely not easily.&#x20;
 
 ### Calling the super!
 
-When extending a class, you've seen that we can call the `super()` method in order to initialize the parent class with properties from the child constructor. Basically, in the constructor, `super()` refers to the parent's constructor. But there's another use for this `super` keyword. In a child class' methods, `super` refers to the parent class along with all its methods and properties. 
+When extending a class, you've seen that we can call the `super()` method in order to initialize the parent class with properties from the child constructor. Basically, in the constructor, `super()` refers to the parent's constructor. But there's another use for this `super` keyword. In a child class' methods, `super` refers to the parent class along with all its methods and properties.&#x20;
 
-It's important to understand that calling methods and properties from `super` will _essentially_ call them for the child itself, _except_ when you overwrite a parent's methods. 
+It's important to understand that calling methods and properties from `super` will _essentially_ call them for the child itself, _except_ when you overwrite a parent's methods.&#x20;
 
-Let's get away from geometry for a second here, and extend something else. Taking a page from my very own Enmap module, let's extend JavaScript's `Map` structure with our own `set()` method that will only log values to console. Not super useful, but sufficient to show the point I'm trying to make: 
+Let's get away from geometry for a second here, and extend something else. Taking a page from my very own Enmap module, let's extend JavaScript's `Map` structure with our own `set()` method that will only log values to console. Not super useful, but sufficient to show the point I'm trying to make:&#x20;
 
 ```javascript
 class SuperMap extends Map {
@@ -238,7 +238,6 @@ class SuperMap extends Map {
 }
 ```
 
-Using `super.set(key, value);` here prevents a feedback loop similar to what we saw in _setters_. If we were to use `this.set(key, value);` we'd be calling the method back on itself. However, calling `super.set(key, value);` means we're saying "HEY, PARENT! DO THIS!". This will still set the value in the Map as expected, because calling the parent's method affects the instance. 
+Using `super.set(key, value);` here prevents a feedback loop similar to what we saw in _setters_. If we were to use `this.set(key, value);` we'd be calling the method back on itself. However, calling `super.set(key, value);` means we're saying "HEY, PARENT! DO THIS!". This will still set the value in the Map as expected, because calling the parent's method affects the instance.&#x20;
 
-I'm not sure I'm really making my point here, so let me say it in another way: `super.set()` calls the original method, not the child's override method, on the current intance of the child. Ok I guess that's still a little technobabble-y, I hope I did get the point across though. 
-
+I'm not sure I'm really making my point here, so let me say it in another way: `super.set()` calls the original method, not the child's override method, on the current intance of the child. Ok I guess that's still a little technobabble-y, I hope I did get the point across though.&#x20;

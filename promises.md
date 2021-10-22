@@ -6,7 +6,7 @@ description: >-
 
 # Understanding Promises
 
-In your endeavours learning and using JavaScript you will encounter a thing called a _Promise_. Like the name kinda sorta implies, a promise is something that happens in the future \(and, in fact, they're sometimes called _Futures_ in other languages!\).
+In your endeavours learning and using JavaScript you will encounter a thing called a _Promise_. Like the name kinda sorta implies, a promise is something that happens in the future (and, in fact, they're sometimes called _Futures_ in other languages!).
 
 The way I like to look at promises is basically that they're an "IOU". You give a promise something to do and it _owes_ you a response later on in your code. When it's ready, it pays you back with an answer!
 
@@ -28,7 +28,7 @@ mathAdd(2, 2).then(res => answer = res);
 console.log(answer); // logs `null`;
 ```
 
-This is because the promise can take a few milliseconds or a few minutes, it makes no difference, the line _after_ it \(the console log\) will run before the promise has resolved. So for now, you have to remember that your code needs to be inside of the .then\(\) callback. My above examples were a bit of a shortcut, so let's do this with a more complete example and a full function.
+This is because the promise can take a few milliseconds or a few minutes, it makes no difference, the line _after_ it (the console log) will run before the promise has resolved. So for now, you have to remember that your code needs to be inside of the .then() callback. My above examples were a bit of a shortcut, so let's do this with a more complete example and a full function.
 
 ```javascript
 mathAdd(2, 2).then( answer => {
@@ -41,7 +41,7 @@ And before you ask "but can't I just do `mathAdd(2, 2).then(answer => { return a
 
 ## Catching Errors
 
-Normally in JavaScript, you catch errors using a try/catch block, surrounding your code. With Promises, the default way of doing this is using a second method after the then\(\), which is catch\(\). They need to be in order, so a Promise that can throw an error would be handled this way:
+Normally in JavaScript, you catch errors using a try/catch block, surrounding your code. With Promises, the default way of doing this is using a second method after the then(), which is catch(). They need to be in order, so a Promise that can throw an error would be handled this way:
 
 ```javascript
 // Basically: 
@@ -63,9 +63,9 @@ myPromiseFunction().then(console.log).catch(console.error);
 
 ## Resolving multiple promises
 
-What if you have multiple promises that need to be resolved before you do something? For example, what if you have a loop and inside that loop you're calling a promise function. There is an easy way to make sure all those promises are resolved before moving forward: `Promise.all()`. This method takes in an array of promises, and will resolve when every promise in that array is resolved. 
+What if you have multiple promises that need to be resolved before you do something? For example, what if you have a loop and inside that loop you're calling a promise function. There is an easy way to make sure all those promises are resolved before moving forward: `Promise.all()`. This method takes in an array of promises, and will resolve when every promise in that array is resolved.&#x20;
 
-So let's say we have a for loop, with a promise inside. Here's how you can use `Promise.all()` to, _ahem_, _resolve the problem_... 
+So let's say we have a for loop, with a promise inside. Here's how you can use `Promise.all()` to, _ahem_, _resolve the problem_...&#x20;
 
 ```javascript
 const promises = [];
@@ -81,7 +81,7 @@ Promise.all(promises).then(results => {
 
 ## Async/Await
 
-Async/Await is a relatively new feature in Node, which was added in version 7.6. It offers the great advantage of being able to simplify your code by removing the need for a .then\(\) method, and simply "returning the value" instead of a promise. The second advantage is that using async/await means you can write code sequentially as if you weren't even using promises, so you don't need to write everything in the then\(\) method itself!
+Async/Await is a relatively new feature in Node, which was added in version 7.6. It offers the great advantage of being able to simplify your code by removing the need for a .then() method, and simply "returning the value" instead of a promise. The second advantage is that using async/await means you can write code sequentially as if you weren't even using promises, so you don't need to write everything in the then() method itself!
 
 The caveat is that using the await keyword requires that the function using it be async. This also means the async function returns a promise itself, so anything calling that function also needs to resolve a promise instead of simply grabbing the return. With all this said, let's look at a very simple example of an async function using await:
 
@@ -180,7 +180,7 @@ const getUser = async id => {
 }
 ```
 
-Now, there is a way to get the username from that response without needing a secondary variable, or even without having the entire object available to you - you can return from inside the promise callback. _"WAIT WHAT?",_ you might ask, thinking you can never return inside a callback? Well yes usually but here is a special case. You can actually _chain_ promises together, and each promise can use the return value of the previous promise. And because of how async/await works you can take advantage of this, just so: 
+Now, there is a way to get the username from that response without needing a secondary variable, or even without having the entire object available to you - you can return from inside the promise callback. _"WAIT WHAT?",_ you might ask, thinking you can never return inside a callback? Well yes usually but here is a special case. You can actually _chain_ promises together, and each promise can use the return value of the previous promise. And because of how async/await works you can take advantage of this, just so:&#x20;
 
 ```javascript
 const getUser = async someValue => {
@@ -190,11 +190,11 @@ const getUser = async someValue => {
 }
 ```
 
-\(Remember from [Understanding Functions](functions.md#es6-functions), ES6 arrow functions return automatically!\)
+(Remember from [Understanding Functions](functions/#es6-functions), ES6 arrow functions return automatically!)
 
 ## Build Your Own Promise
 
-So now you should \(if I'm as good a teacher as I think\) know how to _use_ promises, but what about _making_ them? It honestly took some time even for me to wrap my head around creating promises but I'll try to make it as simple as possible. Let's make a _really_ simple function that returns a promise:
+So now you should (if I'm as good a teacher as I think) know how to _use_ promises, but what about _making_ them? It honestly took some time even for me to wrap my head around creating promises but I'll try to make it as simple as possible. Let's make a _really_ simple function that returns a promise:
 
 ```javascript
 const underAged = (myAge) => {
@@ -229,4 +229,3 @@ const underAged = async (myAge) => {
 ```
 
 Hopefully, now you've learned enough about promises to do some great things with them!
-

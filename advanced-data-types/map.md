@@ -10,7 +10,7 @@ To use a more or less proper terminology, a Map is an unordered key/value pair s
 
 ## Creating a new Map
 
-Maps are created by instanciating a new class of the Map class. If this sounds like goobledygook to you, take a quick look at Understanding Classes, but if you don't care, just carry on, it's not super important ;\)
+Maps are created by instanciating a new class of the Map class. If this sounds like goobledygook to you, take a quick look at Understanding Classes, but if you don't care, just carry on, it's not super important ;)
 
 ```javascript
 // Create a new, empty Map
@@ -39,7 +39,7 @@ Ok so now you have a Map, what can you do with it? Let's see the main ways in wh
 
 ## Setting Values
 
-You can set a value to a Map using the `set(key, value)` method: 
+You can set a value to a Map using the `set(key, value)` method:&#x20;
 
 ```javascript
 // Let's start with an emtpy Map
@@ -66,7 +66,7 @@ console.log(myMap.get(['blah']));
 
 ## Deleting Values
 
-The easiest way to delete a value from a Map, is simply to use the `delete(key)` method. So, `myMap.delete("a")` would delete the key "a" with the value "alpha" in the above Map. 
+The easiest way to delete a value from a Map, is simply to use the `delete(key)` method. So, `myMap.delete("a")` would delete the key "a" with the value "alpha" in the above Map.&#x20;
 
 You can also completely clear any data from a Map to reset it to zero, by using `clear()`. Watch out, you can't "undo" things in a Map so when data is deleted, it's gone!
 
@@ -74,7 +74,7 @@ You can also completely clear any data from a Map to reset it to zero, by using 
 
 An important part of a healthy data structure is the ability to loop over that data. That is to say, you want to be able to act upon every item inside your Map. Here's a couple of very useful properties that let you do that!
 
-To iterate over only the keys, you can use the `keys()` method. This returns an array of all the keys \(but not the values\) in your Map: 
+To iterate over only the keys, you can use the `keys()` method. This returns an array of all the keys (but not the values) in your Map:&#x20;
 
 ```javascript
 const mapKeys = myMap.keys();
@@ -84,9 +84,9 @@ for (i = 0; i  < mapKeys.length; i++) {
 }
 ```
 
-If you want the values instead, you can use `values()`. Yes, quite remarkably predictable, isn't it? 
+If you want the values instead, you can use `values()`. Yes, quite remarkably predictable, isn't it?&#x20;
 
-Lastly, you can loop over both the keys and arrays in two different ways, `forEach()` and `entries()`. `Map.entries()` will return an array of key/value pairs in their array \(so, just like what's used to create a new Map in the first place!\), so you can loop over that if you want. The easiest , however is the forEach loop: 
+Lastly, you can loop over both the keys and arrays in two different ways, `forEach()` and `entries()`. `Map.entries()` will return an array of key/value pairs in their array (so, just like what's used to create a new Map in the first place!), so you can loop over that if you want. The easiest , however is the forEach loop:&#x20;
 
 ```javascript
 // Foreach takes a callback function that provides the Key and Value
@@ -96,5 +96,4 @@ myMap.forEach( (value, key) => {
 });
 ```
 
-> Callbacks and functions are explained in the [Understanding Functions](../functions.md) page.
-
+> Callbacks and functions are explained in the [Understanding Functions](../functions/) page.
