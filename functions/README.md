@@ -9,7 +9,7 @@ description: >-
 
 A function is lines of code that you call from other places in your code to execute certain things. They're used far and wide, mostly when there's code you want to execute many times.
 
-A function takes the following shape, basically:&#x20;
+A function takes the following shape, basically: 
 
 ```javascript
 function myFunc(arguments) {
@@ -32,7 +32,3 @@ function log(type, message) {
   console.log(`[${type}] ${message}`);
 }
 ```
-
-
-
-###
