@@ -1,0 +1,12 @@
+input: .
+output: .retype
+url: js.evie.dev
+branding:
+  title: Accelerated JS Tutorial
+links:
+- text: Live Help
+  link: https://discord.gg/N7ZKH3P
+edit:
+  repo: "http://github.com/eslachance/js-gitbook/edit/"
+footer:
+  copyright: "&copy; Copyright {{ year }}. All rights reserved."
