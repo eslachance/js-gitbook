@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <!-- Primary Meta Tags -->
+    <title>Understanding Modules</title>
+    <meta name="title" content="Understanding Modules">
+    <meta name="description" content="A module is a js file that can be called from other files and used. Most things you use in node become modules and they have to be if they're to be published on npm. Let's learn how to make them." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://js.evie.dev/modules/">
+    <meta property="og:title" content="Understanding Modules">
+    <meta property="og:description" content="A module is a js file that can be called from other files and used. Most things you use in node become modules and they have to be if they're to be published on npm. Let's learn how to make them.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://js.evie.dev/modules/">
+    <meta property="twitter:title" content="Understanding Modules">
+    <meta property="twitter:description" content="A module is a js file that can be called from other files and used. Most things you use in node become modules and they have to be if they're to be published on npm. Let's learn how to make them.">
+    
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css?v=1.10.688364606733" rel="stylesheet" data-turbo-track="reload" />
+
+    <script type="text/javascript" src="/resources/js/config.js?v=1.10.688364606733" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/retype.js?v=1.10" defer data-turbo-track="reload"></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.10.688364606733" defer></script>
+</head>
+    <body>
+        <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+
+    <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+    <div class="container relative flex items-center justify-between flex-grow pr-6 md:justify-start">
+        <!-- Mobile menu button skeleton -->
+        <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center flex-shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+        <div v-cloak id="docs-sidebar-toggle"></div>
+
+        <!-- Logo -->
+        <div class="flex items-center justify-between h-full py-2 md:w-75">
+            <div class="flex items-center px-2 md:px-6">
+                <a id="docs-site-logo" href="/" class="flex items-center leading-snug text-xl">
+                    <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Accelerated JS Tutorial</span>
+                </a>
+            </div>
+
+            <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+        </div>
+
+        <div class="flex justify-between md:flex-grow">
+            <!-- Top Nav -->
+            <nav class="hidden md:flex">
+    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://discord.gg/N7ZKH3P">Live Help</a>
+        </li>
+    </ul>
+</nav>
+
+            <!-- Header Right Skeleton -->
+            <div v-cloak class="flex justify-end flex-grow skeleton">
+
+                <!-- Search input mock -->
+                <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                    <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                    </div>
+
+                    <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                    style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search docs" />
+                </div>
+
+                <!-- Mobile search button mock -->
+                <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                </div>
+
+                <!-- Dark mode switch placehokder -->
+                <div class="w-10 h-10 lg:ml-2"></div>
+
+                <!-- History button mock -->
+                <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                </div>
+            </div>
+
+            <div v-cloak class="flex items-center justify-end flex-grow">
+                <div id="docs-mobile-search-button"></div>
+                <doc-search-desktop></doc-search-desktop>
+
+                <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                <doc-history></doc-history>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+<div v-cloak class="fixed flex flex-col flex-shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+
+    <!-- Render this div, if config.showSidebarFilter is `true` -->
+    <div class="flex items-center h-16 px-6">
+        <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+    </div>
+
+    <div class="pl-6 mb-4 mt-1">
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+    </div>
+
+    <div class="flex-shrink-0 mt-auto bg-transparent dark:border-dark-650">
+        <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com/"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+    </div>
+</div>
+
+<!-- Sidebar component -->
+<doc-sidebar v-cloak>
+    <template #sidebar-footer>
+        <div
+            class="flex-shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650"
+        >
+
+            <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                <nav>
+                    <ul class="flex flex-wrap justify-center items-center">
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://discord.gg/N7ZKH3P">Live Help</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com/"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+        </div>
+    </template>
+</doc-sidebar>
+
+
+        <div class="flex-grow min-w-0 dark:bg-dark-850">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+            <div class="flex">
+    <div class="flex-grow min-w-0 px-6 md:px-16">
+        <main class="relative pt-6 pb-16">
+            <div class="docs-markdown" id="docs-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="docs-sidebar-right-toggle"></div>
+               
+                <!-- Page content  -->
+<doc-anchor-target id="understanding-modules" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#understanding-modules">#</doc-anchor-trigger>
+        <span>Understanding Modules</span>
+    </h1>
+</doc-anchor-target>
+<p>In this guide we&#x27;ll be taking a look specifically at how to create a module for node.js starting from extremely basic one-line all the way to explaining complex implementations with multiple functionality. But don&#x27;t worry, we&#x27;ll keep it as simple as possible!</p>
+<div class="flex mb-6">
+    <div class="flex-shrink-0 w-1 rounded-tl rounded-bl bg-blue-500 dark:bg-blue-400"></div>
+    <div class="flex w-full py-4 border border-l-0 border-gray-300 rounded-tr rounded-br doc-alert bg-white dark:bg-dark-700 dark:border-dark-700" role="alert">
+        <div class="flex items-center ml-4 h-7">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mb-px text-blue-500 dark:text-blue-400" width="22" height="22" viewBox="0 0 24 24" role="presentation">
+                <g fill="currentColor"><g>
+                    <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm0 20c-4.96 0-9-4.04-9-9s4.04-9 9-9 9 4.04 9 9-4.04 9-9 9z"></path>
+                    <path d="M12 11c-.55 0-1 .45-1 1v4c0 .55.45 1 1 1s1-.45 1-1v-4c0-.55-.45-1-1-1zM12.01 7c-.56 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                </g></g>
+            </svg>
+        </div>
+        <div class="pr-5 ml-3">
+<p>In this guide as all my others, I use the latest JavaScript syntax available, which can variably called ES6, ES2017, or &quot;Node&quot; JavaScript. For instance, I use <code v-pre>const functionName = (arg) =&gt; {}</code> to create functions, which is the &quot;fat arrow&quot; way of doing things. I apologize if you&#x27;re not used to this, check out <a href="https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/">this article for more info</a>!</p>
+        </div>
+    </div>
+</div>
+<doc-anchor-target id="whats-a-module-">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#whats-a-module-">#</doc-anchor-trigger>
+        <span>What&#x27;s a module? <a id="whats-a-module"></a></span>
+    </h2>
+</doc-anchor-target>
+<p>A &quot;module&quot; in node.js is a separate file (or group of files) containing &quot;things&quot; that we can use in another file. Modules can contain functions, variables, classes, basically anything that node.js code can contain. So you might ask, why use a module at all if I can just write all my code in a single file? It&#x27;s about two things: readability, and portability.</p>
+<p>First let&#x27;s address <strong>readability</strong>: a complex program, even written in node.js, can be thousands of lines of code. Having 6000 lines in a single file is not only difficult to read, it&#x27;s also difficult to figure out what does what. Furthermore, there are technical problems with a single file code: some parts of the code can affect others, like overwriting variables on a higher scope, changing methods, etc. It&#x27;s what is called &quot;side-effects&quot;. On a separate module, the module can only really affect itself unless you give it something to change.</p>
+<p>The second issue is <strong>portability</strong>. Programmers don&#x27;t generally re-write everything from the ground up every time we start up a new project, right? We re-use parts of our code throughout various applications, and sometimes even update that code in multiple applications at once when we find an issue with it. By creating a module, this makes it easier: if you have a module file you plop in and require in multiple projects, just overwrite that file and boom, you&#x27;re done!</p>
+<p>There&#x27;s also the idea of <strong>distributing</strong> modules. However, this is beyond the scope of this guide. If you&#x27;re interested, check out <a href="https://docs.npmjs.com/getting-started/publishing-npm-packages">Publishing NPM Packages on npmjs.org</a>.</p>
+<doc-anchor-target id="our-first-module">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#our-first-module">#</doc-anchor-trigger>
+        <span>Our First Module</span>
+    </h2>
+</doc-anchor-target>
+<p>Ok so, let&#x27;s start with the super basic, and yet not very useful, module that returns a static string. For a moment imagine you have a folder called <code v-pre>myTest</code> and in this folder, you have 2 files: <code v-pre>index.js</code> and <code v-pre>myModule.js</code>.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// This is index.js
+console.log(&quot;Start Testing&quot;);
+
+const myMessage = require(&quot;./myModule.js&quot;);
+
+console.log(myMessage);</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// This is myModule.js
+module.exports = &quot;Hello, World!&quot;;</code></pre>
+</doc-codeblock></div>
+<p>Running <code v-pre>node index.js</code> in this folder would produce the following console output:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-none"><code v-pre class="language-none">&gt; node index.js
+Start Testing
+Hello, World!
+&gt; _</code></pre>
+</doc-codeblock></div>
+<p>Let&#x27;s explain exactly why, and how a module &quot;replaces&quot; regular code. You could write the exact same code in a single file as such:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">console.log(&quot;Start Testing&quot;);
+const myMessage = &quot;Hello, World!&quot;;
+console.log(myMessage);</code></pre>
+</doc-codeblock></div>
+<p>The difference with the module, is simply that it&#x27;s placed in a separate file. Ok so, like. Yeah, that&#x27;s a module. It&#x27;s as simple as that! But of course, there&#x27;s more to learn here, so let&#x27;s push on to the next step.</p>
+<doc-anchor-target id="a-function-in-a-module">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#a-function-in-a-module">#</doc-anchor-trigger>
+        <span>A function in a module</span>
+    </h2>
+</doc-anchor-target>
+<p>Obviously, having a module return a static string isn&#x27;t super useful. So, most likely we want to have some sort of functionality attached to this module. Let&#x27;s continue on the simple path, and make a module that creates a &quot;welcome message&quot;. I&#x27;m sure you remember doing this stuff while learning javascript, right? Here&#x27;s a function you might have seen, or even written, before:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const hello = (name) =&gt; {
+ return `Hello, ${name}, to this world!`;
+}
+
+const message = hello(&quot;John&quot;);
+console.log(message); // &quot;Hello, John, to this world!&quot;</code></pre>
+</doc-codeblock></div>
+<p>Let&#x27;s take this simple hello module containing that function instead, just to see how that works out.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// helloWorld.js
+module.exports = (name) =&gt; {
+ return `Hello, ${name}, to this world!`;
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// index.js
+const hello = require(&quot;./helloWorld.js&quot;);
+const message = hello(&quot;John&quot;);
+console.log(message); // &quot;Hello, John, to this world!&quot;</code></pre>
+</doc-codeblock></div>
+<p>As you can see, there really isn&#x27;t that much to it. Creating a module with a single function or a single return is that simple. Let&#x27;s continue exploring a bit more, though!</p>
+<doc-anchor-target id="module-scoping">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#module-scoping">#</doc-anchor-trigger>
+        <span>Module Scoping</span>
+    </h2>
+</doc-anchor-target>
+<p>Ok so, one thing that&#x27;s really cool about modules is that you can use other modules in them. I&#x27;m going to go <em>a little too far</em> into code complexity right now by creating a simple module that gets a random cat image from an online API that&#x27;s literally called &quot;Random Cat&quot;. Bear with me for a second:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// randomcat.js
+const snekfetch = require(&quot;snekfetch&quot;);
+
+module.exports = async () =&gt; {
+  const response = await snekfetch.get(&quot;http://aws.random.cat/meow&quot;);
+  return response.body.file;
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// index.js
+const randomCat = require(&quot;./randomcat.js&quot;);
+console.log( randomCat() );</code></pre>
+</doc-codeblock></div>
+<p>Ok so, what am I doing here? First off, I&#x27;m requiring <code v-pre>snekfetch</code>, <a href="https://www.npmjs.com/package/snekfetch">a simple, fast library that does HTTP queries</a>. Then I&#x27;m using this library inside my module to go &quot;fetch&quot; a single image file from the random cat API and return it. Why is this useful? Well simply put, it means that if this is the only file where I&#x27;m using snekfetch, it&#x27;s the only place where I call it. If we were dealing with a complex application, it would be hard to see where each module is used in the code because you&#x27;d have all those require() lines at the top of one file. In separate modules, you know exactly what module uses what library.</p>
+<p>Another thing you might notice is that the line that requires snekfetch is outside of the actual module exports, but... why? Well, here&#x27;s the thing: When you require a module, the whole file is &quot;parsed&quot; once (in other words, it&#x27;s executed). Anything you define in that file is still defined as usual <em>except that it&#x27;s only available in that module</em>. So, snekfetch is only available from the <code v-pre>randomcat.js</code> file and you can&#x27;t call it from outside. As far as <code v-pre>randomcat.js</code> is concerned, it&#x27;s providing a single function that returns a file, and that&#x27;s it.</p>
+<p>So if you define strings, objects, arrays, or whatever else outside of your module and they&#x27;ll be &quot;private&quot; to that module! It makes it a self-contained entity that can only interact and be interacted with using specific methods you define yourself.</p>
+<doc-anchor-target id="multiple-returns">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#multiple-returns">#</doc-anchor-trigger>
+        <span>Multiple Returns</span>
+    </h2>
+</doc-anchor-target>
+<p>Now that we&#x27;ve seen modules in their simplest forms, we&#x27;re ready to thrown in another requirement into the mix: we want to be able to add more than one thing to this module. Say we want a &quot;utility&quot; module that has a couple functions we like to use in a lot of our applications. Let&#x27;s make <em>that</em>!</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// utils.js
+module.exports = &quot;A utility Module by Evie&quot;;
+
+// Turn A String Into Proper Case Like Those Annoying People On The Internet
+module.exports.toProperCase = (myString) =&gt; {
+  return myString.replace(/([^\W_]+[^\s-]*) */g, (txt) =&gt; {
+   return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+  });
+}
+
+// Get a random element from an array.
+module.exports.arrayRandom = (myArray) =&gt; {
+  return myArray[Math.floor(Math.random() * myArray.length)];
+}
+
+// The most basic function of all!
+module.exports.helloWorld = (name) =&gt; {
+  return `Hello, ${name}, to this world!`;
+}</code></pre>
+</doc-codeblock></div>
+<p>So now we have a <code v-pre>utils.js</code> module with 3 different useful functions that we use all over the place every day. How do we call it? Almost the same as we did before, except we can use its named methods!</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// index.js
+
+const utils = require(&quot;./utils.js&quot;);
+
+console.log(utils.toProperCase(&quot;this is a sentence&quot;)) // This Is A Sentence
+console.log(utils.arrayRandom([1, 2, 3, 4])) // a random number from 1 to 4
+console.log(utils.helloWorld(&quot;Evie&quot;)) // Hello, Evie, to this world!</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="more-scopes">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#more-scopes">#</doc-anchor-trigger>
+        <span>More Scopes</span>
+    </h2>
+</doc-anchor-target>
+<p>Let&#x27;s return for a moment to &quot;scoping&quot; in modules. One thing that you might want to consider doing with modules is to have &quot;properties&quot; that can be changed by the module and accessed externally. What do I mean by that? Let&#x27;s make a super simple ToDo module to demonstrate. Instead of blabbering on in paragraphs after, I&#x27;ll use comments in the code to convey what&#x27;s happening.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// todo.js
+
+// surprise, `module.` is optional!
+exports.todoList = [];
+// Accessible through `this.todoList` because `this` is the module itself!
+
+// Method to add a new thing to the list
+exports.add = (thingtodo) =&gt; {
+  // this.todoList is accessing the above array.
+  // If the items isn't present (remove duplicates), add it:
+  if(this.todoList.indexOf(thingtodo) &lt; 0)
+    this.todoList.push(thingtodo);
+  // We return our whole module for &quot;chaining&quot; actions. See usage, below.
+  return this;
+}
+
+// Same deal but we remove the list from its index position.
+exports.remove = (thingtodo) =&gt; {
+  const pos = this.todoList.indexOf(thingtodo);
+  this.todoList = this.todoList.slice(pos, 1);
+  return this;
+}
+
+// A Simple clear function that removes all elements.
+exports.clear = () {
+  this.todoList = [];
+  return this;
+}
+
+// This function &quot;gets&quot; all the ToDos:
+exports.list = () =&gt; {
+  // because we return only an array, it can't be chained after.
+  return this.todoList;
+}
+
+// A &quot;Clean&quot; return of all the ToDos with line returns and numbers!
+exports.cleanList = () =&gt; {
+  // oh man this is awesome ES6 and I wish you understand it!
+  // Things used: Array.prototype.map , Array.join, and Template Literals
+  return this.todoList.map( (item, index)  =&gt; `${index}. ${item}`).join(&quot;\n&quot;);
+}</code></pre>
+</doc-codeblock></div>
+<p>With this we have a module with a <strong>public property</strong> called <code v-pre>todoList</code> that can actually be modified externally, as well as 4 <strong>public methods</strong> to modify that list a little easily. Let&#x27;s see how to use it.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// index.js
+const groceries = require(&quot;./todo.js&quot;);
+
+console.log(groceries.cleanList()) // outputs an empty string
+
+// Add Milk
+groceries.add(&quot;Milk&quot;);
+
+// Add Bread, add butter, remove bread
+groceries.add(&quot;Bread&quot;).add(&quot;Butter&quot;).remove(&quot;Bread&quot;);
+
+console.log(groceries.cleanList());
+/*
+1. Milk
+2. Butter
+(notice the absense of Bread since it was removed)
+*/
+
+// I can also add things manually if I want to but it can be bad!
+groceries.todoList.push(&quot;Butter&quot;);
+
+// Duplicate because I didn't check for that, `add()` does.
+console.log(groceries.list()); // [&quot;Milk&quot;, &quot;Butter&quot;, &quot;Butter&quot;]
+
+groceries.clear(); // it's now empty!</code></pre>
+</doc-codeblock></div>
+<p>If you only wanted this kind of module, you are now done with this guide. You can skip the final parts if you&#x27;re not interested in classes, instances, or different syntaxes. You have enough to be functional!</p>
+<doc-anchor-target id="alternate-syntax">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#alternate-syntax">#</doc-anchor-trigger>
+        <span>Alternate Syntax</span>
+    </h2>
+</doc-anchor-target>
+<p>Let&#x27;s just take a quick look at a different way to make a module, using a different syntax. This can be used to make, let&#x27;s say, &quot;Private&quot; properties and methods, to avoid the issue above with adding to the ToDo list from outside. I feel like this is relatively self-explanatory at this point. If it&#x27;s not, either you haven&#x27;t been following well or I need to review my teaching methodology!</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// todo.js
+
+todoList = [];
+
+const add = (thingtodo) =&gt; {
+  if(todoList.indexOf(thingtodo) &lt; 0)
+    todoList.push(thingtodo);
+  return this;
+}
+
+const remove = (thingtodo) =&gt; {
+  const pos = todoList.indexOf(thingtodo);
+  todoList = todoList.slice(pos, 1);
+  return this;
+}
+
+const clear = () =&gt; {
+  todoList = [];
+  return this;
+}
+
+// I've simplified this one
+const list = () =&gt; todoList;
+
+// And this one too, taking advantage of code simplification in ES6.
+const cleanList = () =&gt; this.list().map((o, i)=&gt;`${i}. ${o}`).join(&quot;\n&quot;);
+
+// Now we EXPORT only thing things we need.
+module.exports.add = add;
+module.exports.remove = remove;
+module.exports.list = cleanList; // so we can use this.list() internally only!
+// notice the lack of exporting todoList!</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="modules-as-classes">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#modules-as-classes">#</doc-anchor-trigger>
+        <span>Modules as Classes</span>
+    </h2>
+</doc-anchor-target>
+<p>One last thing before we go, classes. An advantage of adding a class to a module is that it can be re-used so much more easily, even if that class relies on external libraries or specific internal private code and methods. Let&#x27;s go back to the basics with the example of a class ripped straight off MDN.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>You can stick this in any file and you can create a new rectangle using <code v-pre>const myRect = new Rectangle(10, 5)</code>, sure. But then you might be worries about re-usability and conflicts with other code, right? So let&#x27;s make it a module using what we&#x27;ve learned before.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// rectangle.js
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}
+
+module.exports = Rectangle;</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">//index.js
+const Rectangle = require(&quot;./rectangle.js&quot;);
+
+const myRect new Rectangle(10, 5); // works the same!</code></pre>
+</doc-codeblock></div>
+<p>With this idea we can now require modules and libraries only from a class file and make this code so much prettier.</p>
+<p>You can also easily extend classes this way, just as easily.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const Rectangle = require(&quot;./rectangle.js&quot;);
+
+class ColoredRectangle extends Rectangle {
+  constructor(height, width, color) {
+    super(height, width);
+    this.color = color;
+  }
+}
+
+module.exports = ColoredRectangle;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="notes-and-addendums">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#notes-and-addendums">#</doc-anchor-trigger>
+        <span>Notes and Addendums</span>
+    </h2>
+</doc-anchor-target>
+<doc-anchor-target id="path-relativity">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#path-relativity">#</doc-anchor-trigger>
+        <span>Path Relativity</span>
+    </h3>
+</doc-anchor-target>
+<p><code v-pre>require()</code> uses a path <strong>relative to your project root</strong>. This means, in all the above examples we assume that you are in the root folder and all the files are there. If you&#x27;re in <code v-pre>./index.js</code> and you call <code v-pre>./rectangle.js</code> it&#x27;s from the root folder. If you had a folder called <code v-pre>shapes</code> and you put the classes in it, you could call <code v-pre>require(&quot;./shapes/rectangle.js&quot;)</code>. However, what&#x27;s less known is that if you had a file in another subfolder, say, <code v-pre>src</code>, from <code v-pre>./src/myapp.js</code> you would <strong>still</strong> call it using <code v-pre>./shapes/rectangle.js</code> because that&#x27;s where it is relative to the root folder. <strong>This is contrary to the fs module</strong> in which the path is relative to the current file.</p>
+<p>You can also require files from other projects by going up folders. So if I have <code v-pre>project1</code> and <code v-pre>project2</code> in my development folder, from <code v-pre>Project2</code> I can easily do <code v-pre>require(&quot;../project1/somefile.js&quot;);</code> . While this is useful in development, it is also very critical to remember if ever you make anything where you require things dynamically.</p>
+<doc-anchor-target id="publishing-moduleslibraries">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#publishing-moduleslibraries">#</doc-anchor-trigger>
+        <span>Publishing Modules/Libraries</span>
+    </h3>
+</doc-anchor-target>
+<p>I&#x27;ve touched upon publishing in my introduction. Publishing modules is done on NPM (though the node community wants to enable requires from an HTTP page, that&#x27;s not doable yet), and anyone can publish a module, if the name is unique. To &quot;install&quot; a published library you just need to use npm. For example, in the random cat example I use snekfetch, which needs to be installed using <code v-pre>npm install snekfetch</code>. An installed library doesn&#x27;t use a &quot;path&quot; or a .js extension so it&#x27;s <code v-pre>require(&quot;snekfetch&quot;)</code> instead of, say, <code v-pre>require(&quot;./snekfetch.js&quot;)</code>.</p>
+<p>But what if you&#x27;ve made a cool little library like <code v-pre>utils</code> above and you want everyone to be able to use it just like snekfetch? Then you can do that on NPM! Won&#x27;t cost you a dime, and it will mean you, or anyone else, can install it as you want.</p>
+<p>But, this is a JavaScript and Node guide, and people have expalined it <em>much</em> better than I have! Please see <a href="https://docs.npmjs.com/getting-started/publishing-npm-packages">this guide on npmjs.com</a>! It should help you out in publishing ;)</p>
+
+
+
+
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results />
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between mt-14">
+    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/eslachance/js-gitbook/edit/main/modules.md" target="_blank" rel="noopener">
+        <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        <span>Edit this page</span>
+    </a>
+
+    <!--<p class="my-2.5 text-gray-500 dark:text-dark-350 text-sm">Last updated on <strong>2021-03-14</strong> by <strong>Geoffrey McGill</strong></p>-->
+</div>
+
+<nav class="flex mt-14">
+    <div class="w-1/2">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/functions/chaining-functions/">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+            <span>
+                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                <span class="block mt-1">Chaining Functions</span>
+            </span>
+        </a>
+    </div>
+
+    <div class="w-1/2">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/classes/">
+            <span>
+                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                <span class="block mt-1">Understanding Classes</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        </a>
+    </div>
+</nav>
+
+
+        </main>
+
+        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between">
+    <div>
+        <ul class="flex flex-wrap items-center text-sm">
+</ul>
+
+    </div>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2021. All rights reserved.</p>
+</div>
+</footer>
+
+        </div>
+    </div>
+    
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 transform translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:flex-shrink-0 lg:pt-6 lg:transform-none lg:w-56 lg:z-0 md:w-72 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+        </div>
+    </div>
+    
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+        <div id="docs-overlay-target"></div>
+
+        <script>window.__DOCS__ = { "title": "Understanding Modules", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    </body>
+</html>

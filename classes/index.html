@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <!-- Primary Meta Tags -->
+    <title>Understanding Classes</title>
+    <meta name="title" content="Understanding Classes">
+    <meta name="description" content="Classes are a blueprint to making \"things\" with common properties and methods. Gather around, class, let's get to work building them!" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://js.evie.dev/classes/">
+    <meta property="og:title" content="Understanding Classes">
+    <meta property="og:description" content="Classes are a blueprint to making \"things\" with common properties and methods. Gather around, class, let's get to work building them!">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://js.evie.dev/classes/">
+    <meta property="twitter:title" content="Understanding Classes">
+    <meta property="twitter:description" content="Classes are a blueprint to making \"things\" with common properties and methods. Gather around, class, let's get to work building them!">
+    
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css?v=1.10.688364606733" rel="stylesheet" data-turbo-track="reload" />
+
+    <script type="text/javascript" src="/resources/js/config.js?v=1.10.688364606733" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/retype.js?v=1.10" defer data-turbo-track="reload"></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.10.688364606733" defer></script>
+</head>
+    <body>
+        <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+
+    <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+    <div class="container relative flex items-center justify-between flex-grow pr-6 md:justify-start">
+        <!-- Mobile menu button skeleton -->
+        <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center flex-shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+        <div v-cloak id="docs-sidebar-toggle"></div>
+
+        <!-- Logo -->
+        <div class="flex items-center justify-between h-full py-2 md:w-75">
+            <div class="flex items-center px-2 md:px-6">
+                <a id="docs-site-logo" href="/" class="flex items-center leading-snug text-xl">
+                    <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Accelerated JS Tutorial</span>
+                </a>
+            </div>
+
+            <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+        </div>
+
+        <div class="flex justify-between md:flex-grow">
+            <!-- Top Nav -->
+            <nav class="hidden md:flex">
+    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://discord.gg/N7ZKH3P">Live Help</a>
+        </li>
+    </ul>
+</nav>
+
+            <!-- Header Right Skeleton -->
+            <div v-cloak class="flex justify-end flex-grow skeleton">
+
+                <!-- Search input mock -->
+                <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                    <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                    </div>
+
+                    <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                    style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search docs" />
+                </div>
+
+                <!-- Mobile search button mock -->
+                <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                </div>
+
+                <!-- Dark mode switch placehokder -->
+                <div class="w-10 h-10 lg:ml-2"></div>
+
+                <!-- History button mock -->
+                <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                </div>
+            </div>
+
+            <div v-cloak class="flex items-center justify-end flex-grow">
+                <div id="docs-mobile-search-button"></div>
+                <doc-search-desktop></doc-search-desktop>
+
+                <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                <doc-history></doc-history>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+<div v-cloak class="fixed flex flex-col flex-shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+
+    <!-- Render this div, if config.showSidebarFilter is `true` -->
+    <div class="flex items-center h-16 px-6">
+        <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+    </div>
+
+    <div class="pl-6 mb-4 mt-1">
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+    </div>
+
+    <div class="flex-shrink-0 mt-auto bg-transparent dark:border-dark-650">
+        <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com/"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+    </div>
+</div>
+
+<!-- Sidebar component -->
+<doc-sidebar v-cloak>
+    <template #sidebar-footer>
+        <div
+            class="flex-shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650"
+        >
+
+            <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                <nav>
+                    <ul class="flex flex-wrap justify-center items-center">
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://discord.gg/N7ZKH3P">Live Help</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com/"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+        </div>
+    </template>
+</doc-sidebar>
+
+
+        <div class="flex-grow min-w-0 dark:bg-dark-850">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+            <div class="flex">
+    <div class="flex-grow min-w-0 px-6 md:px-16">
+        <main class="relative pt-6 pb-16">
+            <div class="docs-markdown" id="docs-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="docs-sidebar-right-toggle"></div>
+               
+                <!-- Page content  -->
+<doc-anchor-target id="understanding-classes" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#understanding-classes">#</doc-anchor-trigger>
+        <span>Understanding Classes</span>
+    </h1>
+</doc-anchor-target>
+<p>A &quot;Class&quot;, in any programming language, is essentially defined as a <em>blueprint</em> on which you can build multiple <em>instances</em> (&quot;copies of&quot;) that all share the same basic traits. These traits include <em>properties</em> and <em>methods</em>. </p>
+<doc-anchor-target id="why-use-classes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#why-use-classes">#</doc-anchor-trigger>
+        <span>Why use Classes?</span>
+    </h3>
+</doc-anchor-target>
+<p>Classes are a great way to prevent code duplication, and to greatly simplify how you deal with multiple copies of a single &quot;type&quot; of thing. So let&#x27;s say you have a bunch of &quot;User&quot; objects in your code - you probably have a bunch of methods to deal with those users: creating them, updating them, deleting them, etc. With a class, you can do things like <code v-pre>SomeUser.delete()</code> or <code v-pre>SomeUser.login(username, password)</code> and other useful things.</p>
+<p>It makes your code cleaner, more efficient, and easier to read!</p>
+<doc-anchor-target id="creating-a-class">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#creating-a-class">#</doc-anchor-trigger>
+        <span>Creating a Class</span>
+    </h3>
+</doc-anchor-target>
+<p>Taking a page from MDN, this is a very basic, simple class: </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>Let&#x27;s break this down into its parts: </p>
+<ul>
+<li><code v-pre>class</code> is the keyword that triggers the creation of a class.</li>
+<li><code v-pre>Rectangle</code> is the <em>name</em> of the class.</li>
+<li><code v-pre>constructor</code> is the <a href="../functions/">function </a>that runs when a new instance of the class is created.</li>
+<li><code v-pre>this</code> refers to the class instance itself (in this context). So, setting <code v-pre>this.height</code> will set the &quot;height&quot; property of the instance. </li>
+<li><code v-pre>width</code> and <code v-pre>height</code> are class <em>properties</em>. They are a bit like an object property (well, they are, since everything is an object in JavaScript).</li>
+</ul>
+<p>In order to create an instance, we use the <code v-pre>new</code> keyword, with the class. Here&#x27;s an example with the above <code v-pre>Rectangle</code> class: </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const myRect = new Rectangle(10, 5);
+
+console.log(myRect.height); // 10
+console.log(myRect.width); // 5</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="methods">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#methods">#</doc-anchor-trigger>
+        <span>Methods</span>
+    </h3>
+</doc-anchor-target>
+<p>The next thing to learn about a class is <em>methods</em>, which are functions attached to a class that will, usually, affect the class and its properties in some way. The syntax for methods is very slightly different from a normal function, in that you don&#x27;t need the function keyword. Also, as a sidenote, there are no <a href="../functions/#es6-functions">arrow functions</a> in method definitions for classes. </p>
+<p>Definiting a method is done after the constructor: </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  
+  setWidth(newWidth) {
+    this.width = newWidth;
+  }
+  
+  setHeight(newHeight) {
+    this.height = newHeight;
+  }
+  
+  getArea() {
+    return this.height * this.width;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>As you can see, <code v-pre>this</code> will also refer to the class instance in its methods. Modifying <code v-pre>this</code> properties changes it for the instance, not for the base class itself, since the base class is a blueprint only.</p>
+<p>Any instance of the class will now have those methods. For example: </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const myRect = new Rectangle(10, 5);
+
+console.log(myRect.width); // 5
+
+myRect.setWidth(4);
+
+console.log(myRect.width); // 4
+
+console.log(myRect.getArea()); // 40</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="extending-classes">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#extending-classes">#</doc-anchor-trigger>
+        <span>Extending Classes</span>
+    </h3>
+</doc-anchor-target>
+<p>A class can <em>extend</em> another class. An extended class will inherit the base classe&#x27;s methods and properties by default, but each of those can be overwridden by the extended class. </p>
+<p>Let&#x27;s create a new class called <code v-pre>Square</code> that extends <code v-pre>Rectangle</code> (since a square is always a rectangle, but a rectangle isn&#x27;t always a square).</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">class Square extends Rectangle {
+  constructor(size) {
+    // super() calls the constructor of the parent class
+    super(size, size);
+    // the this keyword can only be called AFTER super() is called
+    this.size = size;
+    this.width = this.size;
+    this.height = this.size;
+  }
+  
+  // A new method only availble for squares
+  setSize(newSize) {
+    this.size = newSize;
+  }
+  
+  // override the base setWidth method
+  setWidth(newWidth) {
+    this.size = newWidth;
+  }
+  
+  // override the base setHeight method
+  setHeight(newHeight) {
+    this.size = newHeight;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>So we obviously have more code here than the base class, just to keep things working as expected. Note however that we now have access to a total of 4 methods, even though the base class only has 2, and we only have 3 in the extended class. Because child classes inherit methods from their parent, <code v-pre>getArea()</code> is also available to the child class.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const mySquare = new Square(5);
+
+console.log(mySquare.getArea()); // 25</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="getters-and-setters">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#getters-and-setters">#</doc-anchor-trigger>
+        <span>Getters and Setters</span>
+    </h3>
+</doc-anchor-target>
+<p>While the <code v-pre>getArea()</code> method of course gets the area of the Square or Rectangle, there is an alternative way of doing things, using getters and setters. Essentially, a <em>Getter</em> is a method that retrieves something from the class, while a <em>Setter</em> is a method that changes a class property. Those methods can have calculations and a lot of steps beyond just returning a property. </p>
+<p>So let&#x27;s change our <code v-pre>getArea</code> method into a getter instead: </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">get area() {
+  return this.height * this.width;
+}</code></pre>
+</doc-codeblock></div>
+<p>Doing this means that you can access <code v-pre>area</code> just like if it was a property, instead of calling the method, which can simplify code greatly for whoever is using that code: </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const mySquare = new Square(5);
+
+console.log(mySquare.area); // 25</code></pre>
+</doc-codeblock></div>
+<p>We can do something similar with a setter. However, it&#x27;s important to note that you can&#x27;t create a setter for a property of the same name. Basically, this is wrong: </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// DO NOT USE THIS
+class Rectangle {
+  constructor(height, width) {
+    this.height = height;
+    this.width = width;
+  }
+  set width(newWidth) {
+    this.width = newWidth;
+  }
+  set height(newHeight) {
+    this.height = newHeight;
+  }
+  get area() {
+    return this.height * this.width;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>This results in an infinite loop, because doing <code v-pre>this.width = 10;</code>  will call the setter, which calls the setter...</p>
+<p>To resolve this, you have 2 different paths you can take: using Symbols, or &quot;internal properties&quot;. </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Using Symbols
+const width = Symbol();
+const height = Symbol();
+
+class Rectangle {
+  constructor(height, width) {
+    this[height] = height;
+    this[width] = width;
+  }
+  set width(newWidth) {
+    this[width] = newWidth;
+  }
+  set height(newHeight) {
+    this[height] = newHeight;
+  }
+  get area() {
+    return this[height] * this[width];
+  }
+}</code></pre>
+</doc-codeblock></div>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Using internal properties
+class Rectangle {
+  constructor(height, width) {
+    this._height = height;
+    this._width = width;
+  }
+  set width(newWidth) {
+    this._width = newWidth;
+  }
+  set height(newHeight) {
+    this._height = newHeight;
+  }
+  get area() {
+    return this._height * this._width;
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>So you might be asking &quot;But Evie, which one do I use?&quot; to which my answer would be: Symbols are probably the &quot;easiest&quot; way here. The reason I&#x27;m saying this is because those internal properties with an underscore... are still accessible to the end user (to whatever code calls the class), whereas Symbols aren&#x27;t. I mean, technically they are if you work hard enough, but definitely not easily. </p>
+<doc-anchor-target id="calling-the-super">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#calling-the-super">#</doc-anchor-trigger>
+        <span>Calling the super!</span>
+    </h3>
+</doc-anchor-target>
+<p>When extending a class, you&#x27;ve seen that we can call the <code v-pre>super()</code> method in order to initialize the parent class with properties from the child constructor. Basically, in the constructor, <code v-pre>super()</code> refers to the parent&#x27;s constructor. But there&#x27;s another use for this <code v-pre>super</code> keyword. In a child class&#x27; methods, <code v-pre>super</code> refers to the parent class along with all its methods and properties. </p>
+<p>It&#x27;s important to understand that calling methods and properties from <code v-pre>super</code> will <em>essentially</em> call them for the child itself, <em>except</em> when you overwrite a parent&#x27;s methods. </p>
+<p>Let&#x27;s get away from geometry for a second here, and extend something else. Taking a page from my very own Enmap module, let&#x27;s extend JavaScript&#x27;s <code v-pre>Map</code> structure with our own <code v-pre>set()</code> method that will only log values to console. Not super useful, but sufficient to show the point I&#x27;m trying to make: </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">class SuperMap extends Map {
+  constructor(iterable = null) {
+    super(iterable);
+  }
+  
+  set(key, value) {
+    console.log(`New value ${value} for key ${key}`);
+    super.set(key, value);
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>Using <code v-pre>super.set(key, value);</code> here prevents a feedback loop similar to what we saw in <em>setters</em>. If we were to use <code v-pre>this.set(key, value);</code> we&#x27;d be calling the method back on itself. However, calling <code v-pre>super.set(key, value);</code> means we&#x27;re saying &quot;HEY, PARENT! DO THIS!&quot;. This will still set the value in the Map as expected, because calling the parent&#x27;s method affects the instance. </p>
+<p>I&#x27;m not sure I&#x27;m really making my point here, so let me say it in another way: <code v-pre>super.set()</code> calls the original method, not the child&#x27;s override method, on the current intance of the child. Ok I guess that&#x27;s still a little technobabble-y, I hope I did get the point across though. </p>
+
+
+
+
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results />
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between mt-14">
+    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/eslachance/js-gitbook/edit/main/classes.md" target="_blank" rel="noopener">
+        <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        <span>Edit this page</span>
+    </a>
+
+    <!--<p class="my-2.5 text-gray-500 dark:text-dark-350 text-sm">Last updated on <strong>2021-03-14</strong> by <strong>Geoffrey McGill</strong></p>-->
+</div>
+
+<nav class="flex mt-14">
+    <div class="w-1/2">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/modules/">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+            <span>
+                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                <span class="block mt-1">Understanding Modules</span>
+            </span>
+        </a>
+    </div>
+
+    <div class="w-1/2">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/promises/">
+            <span>
+                <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
+                <span class="block mt-1">Understanding Promises</span>
+            </span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        </a>
+    </div>
+</nav>
+
+
+        </main>
+
+        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between">
+    <div>
+        <ul class="flex flex-wrap items-center text-sm">
+</ul>
+
+    </div>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2021. All rights reserved.</p>
+</div>
+</footer>
+
+        </div>
+    </div>
+    
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 transform translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:flex-shrink-0 lg:pt-6 lg:transform-none lg:w-56 lg:z-0 md:w-72 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+        </div>
+    </div>
+    
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+        <div id="docs-overlay-target"></div>
+
+        <script>window.__DOCS__ = { "title": "Understanding Classes", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    </body>
+</html>

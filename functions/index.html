@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <!-- Primary Meta Tags -->
+    <title>Understanding Functions</title>
+    <meta name="title" content="Understanding Functions">
+    <meta name="description" content="A function is lines of code that you call from other places in your code to execute certain things. They're used far and wide, mostly when there's code you want to execute many times." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://js.evie.dev/functions/">
+    <meta property="og:title" content="Understanding Functions">
+    <meta property="og:description" content="A function is lines of code that you call from other places in your code to execute certain things. They're used far and wide, mostly when there's code you want to execute many times.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://js.evie.dev/functions/">
+    <meta property="twitter:title" content="Understanding Functions">
+    <meta property="twitter:description" content="A function is lines of code that you call from other places in your code to execute certain things. They're used far and wide, mostly when there's code you want to execute many times.">
+    
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css?v=1.10.688364606733" rel="stylesheet" data-turbo-track="reload" />
+
+    <script type="text/javascript" src="/resources/js/config.js?v=1.10.688364606733" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/retype.js?v=1.10" defer data-turbo-track="reload"></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.10.688364606733" defer></script>
+</head>
+    <body>
+        <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+
+    <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+    <div class="container relative flex items-center justify-between flex-grow pr-6 md:justify-start">
+        <!-- Mobile menu button skeleton -->
+        <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center flex-shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+        <div v-cloak id="docs-sidebar-toggle"></div>
+
+        <!-- Logo -->
+        <div class="flex items-center justify-between h-full py-2 md:w-75">
+            <div class="flex items-center px-2 md:px-6">
+                <a id="docs-site-logo" href="/" class="flex items-center leading-snug text-xl">
+                    <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Accelerated JS Tutorial</span>
+                </a>
+            </div>
+
+            <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+        </div>
+
+        <div class="flex justify-between md:flex-grow">
+            <!-- Top Nav -->
+            <nav class="hidden md:flex">
+    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://discord.gg/N7ZKH3P">Live Help</a>
+        </li>
+    </ul>
+</nav>
+
+            <!-- Header Right Skeleton -->
+            <div v-cloak class="flex justify-end flex-grow skeleton">
+
+                <!-- Search input mock -->
+                <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                    <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                    </div>
+
+                    <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                    style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search docs" />
+                </div>
+
+                <!-- Mobile search button mock -->
+                <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                </div>
+
+                <!-- Dark mode switch placehokder -->
+                <div class="w-10 h-10 lg:ml-2"></div>
+
+                <!-- History button mock -->
+                <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                </div>
+            </div>
+
+            <div v-cloak class="flex items-center justify-end flex-grow">
+                <div id="docs-mobile-search-button"></div>
+                <doc-search-desktop></doc-search-desktop>
+
+                <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                <doc-history></doc-history>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+<div v-cloak class="fixed flex flex-col flex-shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+
+    <!-- Render this div, if config.showSidebarFilter is `true` -->
+    <div class="flex items-center h-16 px-6">
+        <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+    </div>
+
+    <div class="pl-6 mb-4 mt-1">
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+    </div>
+
+    <div class="flex-shrink-0 mt-auto bg-transparent dark:border-dark-650">
+        <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com/"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+    </div>
+</div>
+
+<!-- Sidebar component -->
+<doc-sidebar v-cloak>
+    <template #sidebar-footer>
+        <div
+            class="flex-shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650"
+        >
+
+            <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                <nav>
+                    <ul class="flex flex-wrap justify-center items-center">
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://discord.gg/N7ZKH3P">Live Help</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com/"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+        </div>
+    </template>
+</doc-sidebar>
+
+
+        <div class="flex-grow min-w-0 dark:bg-dark-850">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+            <div class="flex">
+    <div class="flex-grow min-w-0 px-6 md:px-16">
+        <main class="relative pt-6 pb-16">
+            <div class="docs-markdown" id="docs-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="docs-sidebar-right-toggle"></div>
+               
+                <!-- Page content  -->
+<doc-anchor-target id="understanding-functions" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#understanding-functions">#</doc-anchor-trigger>
+        <span>Understanding Functions</span>
+    </h1>
+</doc-anchor-target>
+<p>A function is lines of code that you call from other places in your code to execute certain things. They&#x27;re used far and wide, mostly when there&#x27;s code you want to execute many times.</p>
+<p>A function takes the following shape, basically:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">function myFunc(arguments) {
+  // function code
+}</code></pre>
+</doc-codeblock></div>
+<p>A function may return something, or not. Here&#x27;s an example of a function that returns a value:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">function add(a, b) {
+  return a + b;
+}</code></pre>
+</doc-codeblock></div>
+<p>And here&#x27;s one that does not return a value, but still executes something:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">function log(type, message) {
+  console.log(`[${type}] ${message}`);
+}</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="usingcalling-functions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#usingcalling-functions">#</doc-anchor-trigger>
+        <span>Using/Calling Functions</span>
+    </h3>
+</doc-anchor-target>
+<p>So the 3 examples above were <em>defining</em> functions, meaning they created functions that can be used later on. Let&#x27;s see how we can use them in code.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const answer = add(2, 2);
+
+log(&quot;answer&quot;, answer); // [answer] 4</code></pre>
+</doc-codeblock></div>
+<p>Is it that simple? Yes, it really is. Let&#x27;s break down a few things before we continue.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">function functionName(argument, otherargument) {
+  //function code
+  return &quot;Some Value&quot;;
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code v-pre>function</code> is the keyword that defines a function. There are other ways to define them, but this is the &quot;classical&quot; way.</li>
+<li><code v-pre>functionName</code> is the name of the function itself, how it will be called. so <code v-pre>function add()</code> will be called as <code v-pre>add()</code></li>
+<li><code v-pre>argument</code> and <code v-pre>otherargument</code> are, of course, called the &quot;Arguments&quot; for the function. An Argument&#x27;s name must not be confused with the Parameters that are sent to the function. That is to say, in the <code v-pre>add()</code> function, <code v-pre>a</code> and <code v-pre>b</code> are the <em>arguments</em> and <code v-pre>2</code> and <code v-pre>2</code> are the <em>parameters</em> sent to it.</li>
+<li><code v-pre>return</code> is a special keyword that does two very distinct things: first, it returns a value that&#x27;s after it. So, <code v-pre>return 2;</code> will return the integer <code v-pre>2</code> to whatever called that function. Second, it <em>stops the execution of the function</em>. This means that anything <em>after</em> a return keyword will not execute. This is useful if you want to stop execution based on a condition. For example:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Stop execution if either arguments are missing: 
+function add(a, b) {
+  if(!a || !b) return false;
+  return a + b;
+};</code></pre>
+</doc-codeblock></div>
+<p>The above will return <code v-pre>false</code> if either the <code v-pre>a</code> or <code v-pre>b</code> parameter is missing. The <code v-pre>a+b</code> line will simply never even be executed, which can save a lot of processing power in larger code.</p>
+<doc-anchor-target id="optional-arguments">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#optional-arguments">#</doc-anchor-trigger>
+        <span>Optional Arguments</span>
+    </h3>
+</doc-anchor-target>
+<p>In the previous examples, <code v-pre>a</code> and <code v-pre>b</code> were <em>required</em> arguments, meaning that you could not call the add function without both arguments being present (otherwise, they would be <code v-pre>null</code> and our calculation would fail). You can, however, give a function <em>optional</em> arguments with a default value assigned.</p>
+<p>Let&#x27;s say we want <code v-pre>add()</code> to increment by 1 only, if the second value is not present, instead of stopping the function. This is done by assigning a default value to <code v-pre>b</code> when we create the function:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">function add(a, b = 1) {
+  // We're still stopping the function if a is missing)
+  if(!a) return false; 
+  return a + b;
+}
+
+console.log(add(5)); // 6</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="es6-functions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#es6-functions">#</doc-anchor-trigger>
+        <span>ES6 functions</span>
+    </h3>
+</doc-anchor-target>
+<p>In ES6 (Or ECMAScript 6), functions can have a slightly different look, using the &quot;arrow functions&quot;. They are still assigned to a variable usually, in the following syntax:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const functionName = (argument, otherArugment) =&gt; {
+  // function code
+  return &quot;Some Value&quot;;
+}</code></pre>
+</doc-codeblock></div>
+<p>So is there any difference between the regular and ES6 functions? There&#x27;s a few, and they&#x27;re all very useful.</p>
+<doc-anchor-target id="return-is-implied">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#return-is-implied">#</doc-anchor-trigger>
+        <span>Return is implied</span>
+    </h4>
+</doc-anchor-target>
+<p>If you have an arrow function that does not have curly braces, the <code v-pre>return</code> is implied. This means that you can greatly simplify very simple functions. For instance, our <code v-pre>add</code> function:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">function add(arg1, arg2) {
+  return arg1 + arg2;
+}
+// Simplified to: 
+const add = (arg1, arg2) =&gt; arg1 + arg2;</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="this-keyword-is-not-overwritten">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#this-keyword-is-not-overwritten">#</doc-anchor-trigger>
+        <span>This keyword is not overwritten</span>
+    </h4>
+</doc-anchor-target>
+<p>Mostly useful in relation to class inheritance. <code v-pre>this</code> , in regular functions, refers to the function itself, meaning <code v-pre>this.thing = blah</code> will add that property to the function or method. However, the ES6 arrow function does not overwrite <code v-pre>this</code> so it refers to the upper scope. This is all technobabble to some, but if you know how to work with classes and modules, you&#x27;ll understand why this is useful.</p>
+<doc-anchor-target id="single-argument-functions-are-simpler">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#single-argument-functions-are-simpler">#</doc-anchor-trigger>
+        <span>Single-argument functions are simpler</span>
+    </h4>
+</doc-anchor-target>
+<p>When a single argument is present in an arrow function, you don&#x27;t need the parentheses around that argument. Which means that <code v-pre>const split = str =&gt; str.split(&quot; &quot;);</code> is a perfectly valid function that will return an array of string parts, split by spaces (ok, not a useful function, but you get the picture).</p>
+<doc-anchor-target id="lambdaanonymous-functions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#lambdaanonymous-functions">#</doc-anchor-trigger>
+        <span>Lambda/Anonymous Functions</span>
+    </h3>
+</doc-anchor-target>
+<p>So now we&#x27;ve seen how to create functions that can be called later in the code. But JavaScript has a lot of places where it can actually use what are called Anonymous, or Lambda, functions. Those are functions that are immediately executed, so setting them to a variable wouldn&#x27;t really make that much sense.</p>
+<p>I love working with array functions, so let&#x27;s take use a simple array of objects to show this feature.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const data = [
+  { name: &quot;Bob&quot;, age: 42 },
+  { name: &quot;John&quot;, age: 56 },
+  { name: &quot;Katy&quot;, age: 24 },
+  { name: &quot;Nathan&quot;, age: 5 },
+];
+
+// Good ol' standard functions
+const filter = function(line) {
+  return line.age &lt; 25;
+};
+const young = data.filter(filter);
+
+// Identical function, as a lambda
+const young = data.filter(function(line) {
+  return line.age &lt; 25;
+});
+
+// As a named ES6 lambda: 
+const filter = line =&gt; line.age &lt; 25;
+const young = data.filter(filter);
+
+// As an ES6 Arrow lambda
+const young = data.filter(line =&gt; line.age &lt; 25);</code></pre>
+</doc-codeblock></div>
+<p>In all cases, the functions return the Katy and Nathan lines, as an array of objects. But the point here is that you can greatly simplify your code by using ES6 lambda functions in a whole lot of methods in JavaScript.</p>
+<p>I want to take a moment to show a few examples just to drive home the point of simplicity, when using both named and lambda functions.</p>
+<p>This is an example of using a Promise and catching the error that might occur while using this promise:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">doMyPromiseThing().then(returnValue =&gt; {
+  runSomething(returnValue);
+}).catch(error =&gt; {
+  console.log(error);
+});</code></pre>
+</doc-codeblock></div>
+<p>In this case, we&#x27;re running 2 different functions (<code v-pre>doSomething</code> and <code v-pre>console.log</code>) on either of the then() or catch() blocks. But this can be simplify the entire thing with:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">doMyPromiseThing().then(runSomething).catch(console.log);</code></pre>
+</doc-codeblock></div>
+<p>This will runSomething on the return value, or console log any error that might occur. Of course, you might want to have some sort of <code v-pre>errorHandler</code> function for aching errors, but the point is that they can be called directly, without specifying a variable, without any curly braces or further syntax.</p>
+<doc-anchor-target id="callbacks">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#callbacks">#</doc-anchor-trigger>
+        <span>Callbacks</span>
+    </h3>
+</doc-anchor-target>
+<p>A &quot;Callback&quot; is an asyncronous concept that is the precursor of promises. A lot of modules still use callbacks in Node.</p>
+<blockquote>
+<p>To be more precise, a &quot;callback&quot; is pretty much another name for a function called by another function. In promises, the <code v-pre>then</code> and <code v-pre>catch</code> blocks will run a <em>callback function</em> , which is our lambdas we just saw. However, in common lingo, a &quot;callback&quot; is more often used to describe a module that will run things asyncroneously and use a callback when it&#x27;s done its thing. I&#x27;ll continue using Lambdas to refer to anonymous functions, and Callbacks to refer to asyncroneous function callbacks.</p>
+</blockquote>
+<p>For instance, take this very simple database module code:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">db.get(&quot;SELECT * from USERS WHERE name = 'bob';&quot;, function(row) {
+  console.log(row.name, row.age, row.email);
+});
+// Note: row is NOT available here</code></pre>
+</doc-codeblock></div>
+<p>Here, the callback is the second argument of db.get(), and is called by the get() function once it&#x27;s done doing the thing it needs to do. I feel the need to point out that callbacks are fairly archaic at this point in Node&#x27;s development, and most modules are now moving to using promises.</p>
+<p>One reason for this is that a Callback <em>CANNOT</em> be &quot;awaited&quot; in a single line, in the sense that in order to use the data returned by the callback function, you have to absolutely use that data within the callback function. I refer to this in the <a href="../promises/#async-await">Understanding Promises</a> page, where you can &quot;in-line&quot; a promise and use its return value directly without the .then() block. Regular callbacks cannot be simplified that way.</p>
+<p>However, one advantage that callbacks have is that they can return <em>multiple values at once</em>, as separate arguments, something that Promises cannot achieve as of yet.</p>
+<doc-anchor-target id="making-your-own-callback">
+    <h4>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#making-your-own-callback">#</doc-anchor-trigger>
+        <span>Making your own callback</span>
+    </h4>
+</doc-anchor-target>
+<p>Even though callbacks aren&#x27;t exactly best practice anymore, you might find yourself needing to use them in very particular circumstances. Basically &quot;making your own callback&quot; means that you create a function that takes a function as an argument (the callback), which you will <em>execute</em> when you&#x27;re ready to return a value.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const asyncAdd = (arg1, arg2, callback) =&gt; {
+  // let's pretend this &quot;takes some time&quot;
+  setTimeout( () =&gt; {
+    callback(&quot;solution&quot;, arg1+arg2);
+  }, 1000);
+});</code></pre>
+</doc-codeblock></div>
+<p>So we just created a new function called <code v-pre>asyncAdd</code> that takes in 3 arguments: <code v-pre>arg1, arg2, callback</code>, where the callback needs to be an actual function. So how do we call this? Simple:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">asyncAdd(40, 2, (message, solution) =&gt; {
+  console.log(message, solution);
+});
+
+// Or if you really want to stick to simplicity and short code: 
+asyncAdd(40, 2, console.log);</code></pre>
+</doc-codeblock></div>
+<blockquote>
+<doc-anchor-target id="chaining-functions">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#chaining-functions">#</doc-anchor-trigger>
+        <span>Chaining Functions</span>
+    </h3>
+</doc-anchor-target>
+<p>Function chaining means that you can simply call functions one after the other, using dots between each function. This is something that&#x27;s part of core javascript, whenever you have a value that can take functions, and that function returns a new value, you can chain them! Let&#x27;s take a fairly complex example. Don&#x27;t worry about what it does, just look at the syntax.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const phrase = &quot;I am a sentence&quot;;
+const flip = phrase.split(&quot; &quot;).reverse().join(&quot; &quot;);
+console.log(flip);
+// outputs &quot;sentence a am I&quot;</code></pre>
+</doc-codeblock></div>
+<p>In the example, we&#x27;re starting with a simple string. Then we&#x27;re applying the String.split() function to it, which returns an array. We then use Array.reverse() to flip the array itself. Since the return value of split() is the array, Array.reverse() works on that return value. Finally, we apply Array.join() which converts the array to a string.</p>
+<p>So just to re-iterate clearly: The reason why chaining functions work is because the function <em>returns</em> a value. Functions that do not return values cannot be chained. For instance, <code v-pre>console.log(&quot;Test&quot;).anythingElse()</code> can&#x27;t work because console.log() doesn&#x27;t return anything.</p>
+</blockquote>
+
+
+
+
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results />
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between mt-14">
+    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/eslachance/js-gitbook/edit/main/functions.md" target="_blank" rel="noopener">
+        <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        <span>Edit this page</span>
+    </a>
+
+    <!--<p class="my-2.5 text-gray-500 dark:text-dark-350 text-sm">Last updated on <strong>2021-03-14</strong> by <strong>Geoffrey McGill</strong></p>-->
+</div>
+
+
+
+        </main>
+
+        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between">
+    <div>
+        <ul class="flex flex-wrap items-center text-sm">
+</ul>
+
+    </div>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2021. All rights reserved.</p>
+</div>
+</footer>
+
+        </div>
+    </div>
+    
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 transform translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:flex-shrink-0 lg:pt-6 lg:transform-none lg:w-56 lg:z-0 md:w-72 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+        </div>
+    </div>
+    
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+        <div id="docs-overlay-target"></div>
+
+        <script>window.__DOCS__ = { "title": "Understanding Functions", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    </body>
+</html>

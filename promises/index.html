@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="turbo-cache-control" content="no-cache">
+
+    <!-- Primary Meta Tags -->
+    <title>Understanding Promises</title>
+    <meta name="title" content="Understanding Promises">
+    <meta name="description" content="I promise you'll have fun learning these - let's take a look at asyncroneous promises, how to resolve them, use async, and even how to make your own." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://js.evie.dev/promises/">
+    <meta property="og:title" content="Understanding Promises">
+    <meta property="og:description" content="I promise you'll have fun learning these - let's take a look at asyncroneous promises, how to resolve them, use async, and even how to make your own.">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://js.evie.dev/promises/">
+    <meta property="twitter:title" content="Understanding Promises">
+    <meta property="twitter:description" content="I promise you'll have fun learning these - let's take a look at asyncroneous promises, how to resolve them, use async, and even how to make your own.">
+    
+    <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
+
+    <link href="/resources/css/retype.css?v=1.10.688364606733" rel="stylesheet" data-turbo-track="reload" />
+
+    <script type="text/javascript" src="/resources/js/config.js?v=1.10.688364606733" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/retype.js?v=1.10" defer data-turbo-track="reload"></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.10.688364606733" defer></script>
+</head>
+    <body>
+        <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
+    <div class="absolute bottom-0 left-0 bg-gray-100 dark:bg-dark-800" style="top: 5rem; right: 50%"></div>
+
+    <header id="docs-site-header" class="sticky top-0 z-30 flex w-full h-16 bg-white border-b border-gray-200 md:h-20 dark:bg-dark-850 dark:border-dark-650">
+    <div class="container relative flex items-center justify-between flex-grow pr-6 md:justify-start">
+        <!-- Mobile menu button skeleton -->
+        <button v-cloak class="skeleton docs-mobile-menu-button flex items-center justify-center flex-shrink-0 overflow-hidden dark:text-white focus:outline-none rounded-full w-10 h-10 ml-3.5 md:hidden"><svg xmlns="http://www.w3.org/2000/svg" class="mb-px flex-shrink-0" width="24" height="24" viewBox="0 0 24 24" role="presentation" style="margin-bottom: 0px;"><g fill="currentColor"><path d="M2 4h20v2H2zM2 11h20v2H2zM2 18h20v2H2z"></path></g></svg></button>
+        <div v-cloak id="docs-sidebar-toggle"></div>
+
+        <!-- Logo -->
+        <div class="flex items-center justify-between h-full py-2 md:w-75">
+            <div class="flex items-center px-2 md:px-6">
+                <a id="docs-site-logo" href="/" class="flex items-center leading-snug text-xl">
+                    <span class="dark:text-white font-semibold line-clamp-1 md:line-clamp-2">Accelerated JS Tutorial</span>
+                </a>
+            </div>
+
+            <span class="hidden h-8 border-r md:inline-block dark:border-dark-650"></span>
+        </div>
+
+        <div class="flex justify-between md:flex-grow">
+            <!-- Top Nav -->
+            <nav class="hidden md:flex">
+    <ul class="flex flex-col mb-4 md:pl-16 md:mb-0 md:flex-row md:items-center">
+        <li class="md:mr-6">
+            <a class="block py-2 text-sm text-gray-400 whitespace-nowrap transition-colors duration-200 ease-linear md:text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 md:mb-0" href="https://discord.gg/N7ZKH3P">Live Help</a>
+        </li>
+    </ul>
+</nav>
+
+            <!-- Header Right Skeleton -->
+            <div v-cloak class="flex justify-end flex-grow skeleton">
+
+                <!-- Search input mock -->
+                <div class="relative hidden w-40 lg:block lg:max-w-sm lg:ml-auto">
+                    <div class="absolute flex items-center justify-center h-full pl-3 dark:text-dark-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-base" width="16" height="16" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 1px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                    </div>
+
+                    <input class="w-full h-10 transition-colors duration-200 ease-in bg-gray-200 border border-transparent rounded md:text-sm hover:bg-white hover:border-gray-300 focus:outline-none focus:bg-white focus:border-gray-500 dark:bg-dark-600 dark:border-dark-600 placeholder-gray-400 dark:placeholder-dark-400"
+                    style="padding: 0.625rem 0.75rem 0.625rem 2rem" type="text" placeholder="Search docs" />
+                </div>
+
+                <!-- Mobile search button mock -->
+                <div class="flex items-center justify-center w-10 h-10 lg:hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="20" height="20" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><path d="M21.71 20.29l-3.68-3.68A8.963 8.963 0 0020 11c0-4.96-4.04-9-9-9s-9 4.04-9 9 4.04 9 9 9c2.12 0 4.07-.74 5.61-1.97l3.68 3.68c.2.19.45.29.71.29s.51-.1.71-.29c.39-.39.39-1.03 0-1.42zM4 11c0-3.86 3.14-7 7-7s7 3.14 7 7c0 1.92-.78 3.66-2.04 4.93-.01.01-.02.01-.02.01-.01.01-.01.01-.01.02A6.98 6.98 0 0111 18c-3.86 0-7-3.14-7-7z" ></path></g></svg>
+                </div>
+
+                <!-- Dark mode switch placehokder -->
+                <div class="w-10 h-10 lg:ml-2"></div>
+
+                <!-- History button mock -->
+                <div class="flex items-center justify-center w-10 h-10" style="margin-right: -0.625rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0 icon-base" width="22" height="22" viewBox="0 0 24 24" aria-labelledby="icon" role="presentation"  style="margin-bottom: 0px;"><g fill="currentColor" ><g ><path d="M12.01 6.01c-.55 0-1 .45-1 1V12a1 1 0 00.4.8l3 2.22a.985.985 0 001.39-.2.996.996 0 00-.21-1.4l-2.6-1.92V7.01c.02-.55-.43-1-.98-1z"></path><path d="M12.01 1.91c-5.33 0-9.69 4.16-10.05 9.4l-.29-.26a.997.997 0 10-1.34 1.48l1.97 1.79c.19.17.43.26.67.26s.48-.09.67-.26l1.97-1.79a.997.997 0 10-1.34-1.48l-.31.28c.34-4.14 3.82-7.41 8.05-7.41 4.46 0 8.08 3.63 8.08 8.09s-3.63 8.08-8.08 8.08c-2.18 0-4.22-.85-5.75-2.4a.996.996 0 10-1.42 1.4 10.02 10.02 0 007.17 2.99c5.56 0 10.08-4.52 10.08-10.08.01-5.56-4.52-10.09-10.08-10.09z"></path></g></g></svg>
+                </div>
+            </div>
+
+            <div v-cloak class="flex items-center justify-end flex-grow">
+                <div id="docs-mobile-search-button"></div>
+                <doc-search-desktop></doc-search-desktop>
+
+                <doc-theme-switch class="lg:ml-2"></doc-theme-switch>
+                <doc-history></doc-history>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+    <div class="container relative flex bg-white">
+        <!-- Sidebar Skeleton -->
+<div v-cloak class="fixed flex flex-col flex-shrink-0 duration-300 ease-in-out bg-gray-100 border-gray-200 sidebar top-20 w-75 border-r h-screen md:sticky transition-transform skeleton dark:bg-dark-800 dark:border-dark-650">
+
+    <!-- Render this div, if config.showSidebarFilter is `true` -->
+    <div class="flex items-center h-16 px-6">
+        <input class="w-full h-8 px-3 py-2 transition-colors duration-200 ease-linear bg-white border border-gray-200 rounded shadow-none text-sm focus:outline-none focus:border-gray-600 dark:bg-dark-600 dark:border-dark-600" type="text" placeholder="Filter" />
+    </div>
+
+    <div class="pl-6 mb-4 mt-1">
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-32 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-48 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+        <div class="w-40 h-3 mb-4 bg-gray-200 rounded-full loading dark:bg-dark-600"></div>
+    </div>
+
+    <div class="flex-shrink-0 mt-auto bg-transparent dark:border-dark-650">
+        <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com/"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+    </div>
+</div>
+
+<!-- Sidebar component -->
+<doc-sidebar v-cloak>
+    <template #sidebar-footer>
+        <div
+            class="flex-shrink-0 mt-auto border-t md:bg-transparent md:border-none dark:border-dark-650"
+        >
+
+            <div class="py-3 px-6 md:hidden border-b dark:border-dark-650">
+                <nav>
+                    <ul class="flex flex-wrap justify-center items-center">
+                        <li class="mr-6">
+                            <a class="block py-1 text-sm whitespace-nowrap transition-colors duration-200 ease-linear text-blue-500 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200" href="https://discord.gg/N7ZKH3P">Live Help</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <a
+    class="flex items-center justify-center flex-nowrap h-16 text-gray-400 dark:text-dark-400 hover:text-gray-700 dark:hover:text-dark-300 transition-colors duration-150 ease-in"
+    target="_blank"
+    href="https://retype.com/"
+    rel="noopener"
+>
+    <span class="text-xs whitespace-nowrap">Powered by</span>
+    <svg xmlns="http://www.w3.org/2000/svg" class="ml-2" fill="currentColor" width="96" height="20" overflow="visible"><path d="M0 0v20h13.59V0H0zm11.15 17.54H2.44V2.46h8.71v15.08zM15.8 20h2.44V4.67L15.8 2.22zM20.45 6.89V20h2.44V9.34z"/><g><path d="M40.16 8.44c0 1.49-.59 2.45-1.75 2.88l2.34 3.32h-2.53l-2.04-2.96h-1.43v2.96h-2.06V5.36h3.5c1.43 0 2.46.24 3.07.73s.9 1.27.9 2.35zm-2.48 1.1c.26-.23.38-.59.38-1.09 0-.5-.13-.84-.4-1.03s-.73-.28-1.39-.28h-1.54v2.75h1.5c.72 0 1.2-.12 1.45-.35zM51.56 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92h4.74v1.83h-6.79V5.36h6.64zM60.09 7.15v7.48h-2.06V7.15h-2.61V5.36h7.28v1.79h-2.61zM70.81 14.64h-2.06v-3.66l-3.19-5.61h2.23l1.99 3.45 1.99-3.45H74l-3.19 5.61v3.66zM83.99 6.19c.65.55.97 1.4.97 2.55s-.33 1.98-1 2.51-1.68.8-3.04.8h-1.23v2.59h-2.06V5.36h3.26c1.42 0 2.45.28 3.1.83zm-1.51 3.65c.25-.28.37-.69.37-1.22s-.16-.92-.48-1.14c-.32-.23-.82-.34-1.5-.34H79.7v3.12h1.38c.68 0 1.15-.14 1.4-.42zM95.85 5.36V7.2h-4.59v1.91h4.13v1.76h-4.13v1.92H96v1.83h-6.79V5.36h6.64z"/></g></svg>
+</a>
+
+        </div>
+    </template>
+</doc-sidebar>
+
+
+        <div class="flex-grow min-w-0 dark:bg-dark-850">
+            <!-- Render "toolbar" template here on api pages --><!-- Render page content -->
+            <div class="flex">
+    <div class="flex-grow min-w-0 px-6 md:px-16">
+        <main class="relative pt-6 pb-16">
+            <div class="docs-markdown" id="docs-content">
+                <!-- Rendered if sidebar right is enabled -->
+                <div id="docs-sidebar-right-toggle"></div>
+               
+                <!-- Page content  -->
+<doc-anchor-target id="understanding-promises" class="break-words">
+    <h1>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#understanding-promises">#</doc-anchor-trigger>
+        <span>Understanding Promises</span>
+    </h1>
+</doc-anchor-target>
+<p>In your endeavours learning and using JavaScript you will encounter a thing called a <em>Promise</em>. Like the name kinda sorta implies, a promise is something that happens in the future (and, in fact, they&#x27;re sometimes called <em>Futures</em> in other languages!).</p>
+<p>The way I like to look at promises is basically that they&#x27;re an &quot;IOU&quot;. You give a promise something to do and it <em>owes</em> you a response later on in your code. When it&#x27;s ready, it pays you back with an answer!</p>
+<doc-anchor-target id="basic-promises">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#basic-promises">#</doc-anchor-trigger>
+        <span>Basic Promises</span>
+    </h2>
+</doc-anchor-target>
+<p>Let&#x27;s take a look at what this means in terms of code. Let&#x27;s say we have a promise called <code v-pre>mathAdd</code> which takes in two numbers and adds them together. In our imaginary world, that takes a few moments and isn&#x27;t instantaneous. Humor me for a moment, and look at one way we could use this promise function in code:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">mathAdd(2, 2).then( answer =&gt; console.log(answer) );</code></pre>
+</doc-codeblock></div>
+<p>So, the first thing you&#x27;ll notice when using promises, is that to get the value, you need to use <code v-pre>.then()</code>. Something like <code v-pre>const response = math.add(2, 2);</code> would return the <em>promise itself</em>, and not the result of the operation.</p>
+<p>When I said &quot;it takes a moment&quot;, what I mean to say is that the <code v-pre>answer</code> itself is not available directly after this line has run. This means that the following code <em><strong>will not work</strong></em>:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">let answer;
+mathAdd(2, 2).then(res =&gt; answer = res);
+console.log(answer); // logs `null`;</code></pre>
+</doc-codeblock></div>
+<p>This is because the promise can take a few milliseconds or a few minutes, it makes no difference, the line <em>after</em> it (the console log) will run before the promise has resolved. So for now, you have to remember that your code needs to be inside of the .then() callback. My above examples were a bit of a shortcut, so let&#x27;s do this with a more complete example and a full function.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">mathAdd(2, 2).then( answer =&gt; {
+  console.log(&quot;The answer is: &quot;);
+  console.log(answer);
+});</code></pre>
+</doc-codeblock></div>
+<p>And before you ask &quot;but can&#x27;t I just do <code v-pre>mathAdd(2, 2).then(answer =&gt; { return answer; });</code> , well... no. You can&#x27;t return from a callback whether it&#x27;s a promise or not. There <em>are</em> better ways of dealing with promises, but before we do, let&#x27;s take a look a handling errors.</p>
+<doc-anchor-target id="catching-errors">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#catching-errors">#</doc-anchor-trigger>
+        <span>Catching Errors</span>
+    </h2>
+</doc-anchor-target>
+<p>Normally in JavaScript, you catch errors using a try/catch block, surrounding your code. With Promises, the default way of doing this is using a second method after the then(), which is catch(). They need to be in order, so a Promise that can throw an error would be handled this way:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Basically: 
+myPromiseFunction().then(responseFunction).catch(errorFunction);
+
+// Example: 
+myPromiseFunction(args).then(response =&gt; {
+  console.log(response);
+}).catch(error =&gt; {
+  console.error(error);
+});</code></pre>
+</doc-codeblock></div>
+<p>Remember that because in JavaScript you can replace the <em>callback</em> portion of the above code with an actual function, you could do something like this:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">myPromiseFunction().then(console.log).catch(console.error);</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="resolving-multiple-promises">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#resolving-multiple-promises">#</doc-anchor-trigger>
+        <span>Resolving multiple promises</span>
+    </h2>
+</doc-anchor-target>
+<p>What if you have multiple promises that need to be resolved before you do something? For example, what if you have a loop and inside that loop you&#x27;re calling a promise function. There is an easy way to make sure all those promises are resolved before moving forward: <code v-pre>Promise.all()</code>. This method takes in an array of promises, and will resolve when every promise in that array is resolved. </p>
+<p>So let&#x27;s say we have a for loop, with a promise inside. Here&#x27;s how you can use <code v-pre>Promise.all()</code> to, <em>ahem</em>, <em>resolve the problem</em>... </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const promises = [];
+for(let i = 0; i &lt; 10; i++) {
+  promises.push(myPromiseFunction(args));
+}
+Promise.all(promises).then(results =&gt; {
+  // results is an array of the data resulting from each promise
+}).catch(errors =&gt; {
+  // errors is an array of any error that happened on any of the promises.
+});</code></pre>
+</doc-codeblock></div>
+<doc-anchor-target id="asyncawait">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#asyncawait">#</doc-anchor-trigger>
+        <span>Async/Await</span>
+    </h2>
+</doc-anchor-target>
+<p>Async/Await is a relatively new feature in Node, which was added in version 7.6. It offers the great advantage of being able to simplify your code by removing the need for a .then() method, and simply &quot;returning the value&quot; instead of a promise. The second advantage is that using async/await means you can write code sequentially as if you weren&#x27;t even using promises, so you don&#x27;t need to write everything in the then() method itself!</p>
+<p>The caveat is that using the await keyword requires that the function using it be async. This also means the async function returns a promise itself, so anything calling that function also needs to resolve a promise instead of simply grabbing the return. With all this said, let&#x27;s look at a very simple example of an async function using await:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Regular Promises: 
+function myFunc() {
+  myPromiseFunction().then(response =&gt; {
+    console.log(response);
+  });
+}
+
+// async version
+async function myFunc() {
+  const response = await myPromiseFunction();
+  console.log(response);
+}</code></pre>
+</doc-codeblock></div>
+<p>Where async/await functions shine is when you need to chain multiple promises together to ultimately get your data. Let&#x27;s take this example:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">getData().then(a =&gt; { 
+  getMoreData(a).then(b =&gt; {
+    getMoreEvenMoreData(b).then(c =&gt; {
+      getUltimateData(c).then(d =&gt; {
+        console.log(d);
+      });
+    });
+  });
+});</code></pre>
+</doc-codeblock></div>
+<p>This is something that people often call &quot;callback hell&quot;, or in this case, &quot;promise hell&quot;. Async/await makes this much more simple, assuming you&#x27;re already in an async function:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">async function myFunc() {
+  const a = await getData();
+  const b = await getMoreData(a);
+  const c = await getEvenMoreData(b);
+  const d = await getUltimateData(c);
+  console.log(d);
+  // and you can also RETURN this!
+  return d;
+}
+
+myFunc().then(console.log); // prints the value of d</code></pre>
+</doc-codeblock></div>
+<p>Async/await errors are handled differently, actually when using this concept you simply go back to using try/catch. Here&#x27;s the same code as above, with error handling added:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">async function myFunc() {
+  try {
+    const a = await getData();
+    const b = await getMoreData(a);
+    const c = await getEvenMoreData(b);
+    const d = await getUltimateData(c);
+    console.log(d);
+    // and you can also RETURN this!
+    return d;
+  } catch(err) {
+    console.error(&quot;An error occured: &quot; + e);
+  }
+}</code></pre>
+</doc-codeblock></div>
+<p>Async works in any type of functions, even callbacks. Here are a few examples of using async.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Events
+emitter.on(&quot;someEvent&quot;, async (arg1, arg2) =&gt; {
+  const response = await myPromiseFunction();
+  console.log(response);
+});
+
+// ES6 functions
+const myFunc = async (arg1, arg2) =&gt; {
+  const response = await myPromiseFunction();
+  console.log(response);
+}
+
+// Inside a callback
+someFunction(&quot;myArg&quot;, async (response) =&gt; {
+  await doSomething();
+});</code></pre>
+</doc-codeblock></div>
+<p>Async offers one final advantage: it lets you &quot;return a value&quot; from within a promise callback. Ok that&#x27;s one of these sentences you can only understand when you know what it&#x27;s talking about so let&#x27;s show an example. Think about a situation where a promise function would return a very large object or result and you only wanted part of it. In order to get that part, you could do something like this, right?</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const getUser = async id =&gt; {
+    const response = await getFromUrl(`${baseUrl}/user?id=${id}`);
+    const theUsername = response.author.username;
+    const parsedData = await getUserFromUsername(theUsername);
+    return parsedData;
+}</code></pre>
+</doc-codeblock></div>
+<p>Now, there is a way to get the username from that response without needing a secondary variable, or even without having the entire object available to you - you can return from inside the promise callback. <em>&quot;WAIT WHAT?&quot;,</em> you might ask, thinking you can never return inside a callback? Well yes usually but here is a special case. You can actually <em>chain</em> promises together, and each promise can use the return value of the previous promise. And because of how async/await works you can take advantage of this, just so: </p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const getUser = async someValue =&gt; {
+    const user = await getFromUrl(`${baseUrl}/user?id=${id}`)
+        .then(response =&gt; response.author.username);
+    return await getUserFromUsername(user);
+}</code></pre>
+</doc-codeblock></div>
+<p>(Remember from <a href="../functions/#es6-functions">Understanding Functions</a>, ES6 arrow functions return automatically!)</p>
+<doc-anchor-target id="build-your-own-promise">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#build-your-own-promise">#</doc-anchor-trigger>
+        <span>Build Your Own Promise</span>
+    </h2>
+</doc-anchor-target>
+<p>So now you should (if I&#x27;m as good a teacher as I think) know how to <em>use</em> promises, but what about <em>making</em> them? It honestly took some time even for me to wrap my head around creating promises but I&#x27;ll try to make it as simple as possible. Let&#x27;s make a <em>really</em> simple function that returns a promise:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const underAged = (myAge) =&gt; {
+  return new Promise( (resolve, reject) =&gt; {
+    if(myAge &lt; 18) {
+      reject(&quot;I can't serve you alcohol&quot;);
+    } else {
+      resolve(&quot;Here's your drink!&quot;);
+    }
+  });
+}
+
+// And then we can use it
+underAged(21).then(console.log).catch(console.error);
+// logs &quot;Here's your drink!&quot;
+
+underAged(17).then(console.log).catch(console.error);
+// logs error &quot;I can't serve you alcohol!&quot;</code></pre>
+</doc-codeblock></div>
+<p>If it wasn&#x27;t already obvious, the <code v-pre>resolve()</code> method triggers the promise&#x27;s <code v-pre>.then()</code> answer, but the <code v-pre>reject()</code> method triggers the promise&#x27;s <code v-pre>.catch()</code>.</p>
+<p>It&#x27;s important to note that to the contrary of <em>callback</em> functions, a promise can <strong>only return a single value</strong>, so you can&#x27;t do something like <code v-pre>resolve(&quot;thing1&quot;, &quot;thing2&quot;)</code>, that would simply return the first argument. However, you can most definitely return an array or object from a promise!</p>
+<p>There is also a secondary way of creating a promise. As I mentioned earlier, creating an async function will automatically create a promise. However, because you&#x27;re not able to define the <code v-pre>resolve()</code> and <code v-pre>reject()</code> methods, you can simply trigger the promise&#x27;s <code v-pre>then()</code> through a <code v-pre>return</code>, and you can trigger a <code v-pre>catch()</code> by throwing an error. Here&#x27;s the same function as above, using this concept:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const underAged = async (myAge) =&gt; {
+  if(myAge &gt;= 18) return &quot;Here's your drink!&quot;;
+  else throw new Error(&quot;I can't serve you alcohol!&quot;);
+}</code></pre>
+</doc-codeblock></div>
+<p>Hopefully, now you&#x27;ve learned enough about promises to do some great things with them!</p>
+
+
+
+
+                <!-- Required only on API pages -->
+                <doc-toolbar-member-filter-no-results />
+            </div>
+
+            <div class="flex flex-wrap items-center justify-between mt-14">
+    <a class="my-2.5 inline-flex items-center text-sm whitespace-nowrap text-blue-500 dark:text-blue-400 hover:text-blue-700 hover:underline" href="https://github.com/eslachance/js-gitbook/edit/main/promises.md" target="_blank" rel="noopener">
+        <svg class="mr-1.5" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M20 12c-.55 0-1 .45-1 1v7c0 .55-.45 1-1 1H4c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h7c.55 0 1-.45 1-1s-.45-1-1-1H4C2.35 3 1 4.35 1 6v14c0 1.65 1.35 3 3 3h14c1.65 0 3-1.35 3-3v-7c0-.55-.45-1-1-1z" /><path d="M22.21 1.79c-1.18-1.18-3.24-1.18-4.41 0l-9.5 9.5c-.13.13-.22.29-.26.46l-1 4c-.08.34.01.7.26.95.18.2.44.3.7.3.08 0 .16-.01.24-.03l4-1c.18-.04.34-.13.46-.26l9.5-9.5c1.22-1.22 1.22-3.2.01-4.42zm-1.42 3l-9.3 9.3-2.11.53.53-2.11 9.3-9.3c.42-.42 1.16-.42 1.59 0 .43.43.43 1.15-.01 1.58z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+        <span>Edit this page</span>
+    </a>
+
+    <!--<p class="my-2.5 text-gray-500 dark:text-dark-350 text-sm">Last updated on <strong>2021-03-14</strong> by <strong>Geoffrey McGill</strong></p>-->
+</div>
+
+<nav class="flex mt-14">
+    <div class="w-1/2">
+        <a class="px-5 py-4 h-full flex items-center break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r rounded-l-lg transition-colors duration-150 relative hover:z-5" href="/classes/">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19 11H7.41l5.29-5.29a.996.996 0 10-1.41-1.41l-7 7a1 1 0 000 1.42l7 7a1.024 1.024 0 001.42-.01.996.996 0 000-1.41L7.41 13H19c.55 0 1-.45 1-1s-.45-1-1-1z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
+            <span>
+                <span class="block text-xs font-normal text-gray-400 dark:text-dark-400">Previous</span>
+                <span class="block mt-1">Understanding Classes</span>
+            </span>
+        </a>
+    </div>
+
+    <div class="w-1/2">
+    </div>
+</nav>
+
+
+        </main>
+
+        <div class="border-t dark:border-dark-650 pt-6 mb-8">
+            <footer class="flex flex-wrap items-center justify-between">
+    <div>
+        <ul class="flex flex-wrap items-center text-sm">
+</ul>
+
+    </div>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2021. All rights reserved.</p>
+</div>
+</footer>
+
+        </div>
+    </div>
+    
+    <!-- Rendered if sidebar right is enabled -->
+    <!-- Sidebar right skeleton-->
+    <div v-cloak class="fixed top-0 bottom-0 right-0 transform translate-x-full bg-white border-gray-200 lg:sticky lg:border-l lg:flex-shrink-0 lg:pt-6 lg:transform-none lg:w-56 lg:z-0 md:w-72 sidebar-right skeleton dark:bg-dark-850 dark:border-dark-650">
+        <div class="pl-5">
+            <div class="w-32 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-48 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+            <div class="w-40 h-3 mb-4 bg-gray-200 dark:bg-dark-600 rounded-full loading"></div>
+        </div>
+    </div>
+    
+    <!-- User should be able to hide sidebar right -->
+    <doc-sidebar-right v-cloak></doc-sidebar-right>
+</div>
+
+        </div>
+    </div>
+
+    <doc-search-mobile></doc-search-mobile>
+    <doc-back-to-top></doc-back-to-top>
+</div>
+
+
+        <div id="docs-overlay-target"></div>
+
+        <script>window.__DOCS__ = { "title": "Understanding Promises", icon: "file", hasPrism: true, hasMermaid: false, hasMath: false }</script>
+    </body>
+</html>
