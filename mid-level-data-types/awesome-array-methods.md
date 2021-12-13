@@ -86,6 +86,42 @@ You can of course use any function that expects an input and returns a boolean v
 The Boolean function returns false on empty strings `''` or the number `0` so be careful when you use it!
 {% endhint %}
 
+
+## Array.find()
+
+This one is really simple. Array.find() is exactly the same as array.filter, except that when it finds a result (when the condition returns true), it will return the value from the current iteration, and stop the loop. So, it takes the same kind of function as Array.filter() but instead of returning an array of values, it returns the first value. If you want to only get one value, this is more efficient than using filter() then getting the first from it.
+
+```javascript
+const someNumbers = [ 1, 2, 61, 332, 5643, 42, 0, 111 ];
+const firstEvenNumber = myArray.find(num => num % 2); // 2
+```
+
+## Array.some()
+
+Another simple one! Array.some() takes in a function that will iterate on every element in the array. If **any** of the values in the array returns `true` on that function, then Array.some() *stops processing* and returns `true`. This makes it a pretty efficient method of checking if something is in the array, as it will not traverse the entire thing unless the value isn't located in the array.
+
+```javascript
+const vals = ["John", "Paul", "Ringo", "George", "Pete"];
+const containsAnA = vals.some(name => name.includes("a"));
+// true, and stops when it reaches "Paul".
+
+const containsAnM = vals.some(name => name.includes("m"));
+// false and goes through the whole array
+```
+
+## Array.every()
+
+In the line of "just like the last one", Array.every() does the same thing as .some() except it will always traverse the entire array, and return true if, and only if, the function you provide it returns true on every single element of the array.
+
+```javascript
+const vals = ["John", "Paul", "Ringo", "George", "Pete"];
+const missingA = vals.some(name => !name.includes("a"));
+// false, one of them contains an A
+
+const missingM = vals.some(name => !name.includes("m"));
+// true, none of them contains a M
+```
+
 ## Array.includes()
 
 Array.includes() is a very simple method of checking whether a value is included inside an array. Very simply put, if you have an array of values, you can know if it includes a particular value or not. This returns a boolean, so it's very often used in conditions.
@@ -110,6 +146,10 @@ if(["hey", "hello", "hi", "wazaaap"].includes(string)) {
   // will be true since the array includes "hi"
 }
 ```
+
+{% hint style="warning" %}
+Array.includes() only works with *simple* values like strings and numbers. It won't work by comparing arrays and objects since JavaScript cannot compare them directly. You can, howevever, use Array.some() with a function to emulate this.
+{% endhint %}
 
 ## Array.reduce()
 
@@ -158,16 +198,3 @@ The reduce function adds two other arguments not used in my example: currentInde
 ## Array.sort()
 
 \[ TBD cuz lazy right now ]
-
-## Array.find()
-
-This one is really simple. Array.find() is exactly the same as array.filter, except that when it finds a result (when the condition returns true), it will return the value from the current iteration, and stop the loop. So, it takes the same kind of function as Array.filter() but instead of returning an array of values, it returns the first value. If you want to only get one value, this is more efficient than using filter() then getting the first from it. Good? Good!
-
-## Array.every()
-
-\[ TBD cuz lazy right now ]
-
-## Array.some()
-
-\[ TBD cuz lazy right now ]
-
