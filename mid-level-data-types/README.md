@@ -16,8 +16,8 @@ const mixedArray = ["this is", "a mixed", 33, ["sub array", "yay"], "array"];
 // You can define arrays in multiple lines, like this array of objects
 // (see "Objects" below)
 const objArray = [
-  {"first": "post", "second", "thing"},
-  {"first": "not", "second", "otherthing"}
+  {"first": "post", "second": "thing"},
+  {"first": "not", "second": "otherthing"}
 ];
 ```
 

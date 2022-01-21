@@ -10,7 +10,6 @@
   * [Map](advanced-data-types/map.md)
 * [Understanding Conditions](conditions.md)
 * [Understanding Functions](functions/README.md)
-  * [Using and Calling Functions](functions/using-and-calling-functions.md)
   * [ES6 functions](functions/es6-functions.md)
   * [Lambda / Anonymous Functions](functions/lambda-anonymous-functions.md)
   * [Callbacks](functions/callbacks.md)
