@@ -24,12 +24,12 @@
     
     <script>(function () { var el = document.documentElement, m = localStorage.getItem("doc_theme"), wm = window.matchMedia; if (m === "dark" || (!m && wm && wm("(prefers-color-scheme: dark)").matches)) { el.classList.add("dark") } else { el.classList.remove("dark") } })();</script>
 
-    <link href="/resources/css/retype.css?v=1.11.1.692680650937" rel="stylesheet" data-turbo-track="reload" />
+    <link href="/resources/css/retype.css?v=1.11.2.696086653647" rel="stylesheet" data-turbo-track="reload" />
 
-    <script type="text/javascript" src="/resources/js/config.js?v=1.11.1.692680650937" defer data-turbo-track="reload"></script>
-    <script type="text/javascript" src="/resources/js/retype.js?v=1.11.1" defer data-turbo-track="reload"></script>
-    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.1.692680650937" defer></script>
-    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.1.692680650937" defer></script>
+    <script type="text/javascript" src="/resources/js/config.js?v=1.11.2.696086653647" defer data-turbo-track="reload"></script>
+    <script type="text/javascript" src="/resources/js/retype.js?v=1.11.2" defer data-turbo-track="reload"></script>
+    <script id="lunr-js" type="text/javascript" src="/resources/js/lunr.js?v=1.11.2.696086653647" defer></script>
+    <script id="prism-js" type="text/javascript" src="/resources/js/prism.js?v=1.11.2.696086653647" defer></script>
 </head>
     <body>
         <div id="docs-app" class="relative text-base antialiased text-gray-700 bg-white font-body dark:bg-dark-850 dark:text-dark-300">
@@ -202,6 +202,56 @@
   console.log(`[${type}] ${message}`);
 }</code></pre>
 </doc-codeblock></div>
+<doc-anchor-target id="using-and-calling-functions">
+    <h2>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#using-and-calling-functions">#</doc-anchor-trigger>
+        <span>Using and Calling Functions</span>
+    </h2>
+</doc-anchor-target>
+<p>So the 3 previous examples were <em>defining</em> functions, meaning they created functions that can be used later on. Let&#x27;s see how we can use them in code.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">const answer = add(2, 2);
+
+log(&quot;answer&quot;, answer); // [answer] 4</code></pre>
+</doc-codeblock></div>
+<p>Is it that simple? Yes, it really is. Let&#x27;s break down a few things before we continue.</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">function functionName(argument, otherargument) {
+  //function code
+  return &quot;Some Value&quot;;
+}</code></pre>
+</doc-codeblock></div>
+<ul>
+<li><code v-pre>function</code> is the keyword that defines a function. There are other ways to define them, but this is the &quot;classical&quot; way.</li>
+<li><code v-pre>functionName</code> is the name of the function itself, how it will be called. so <code v-pre>function add()</code> will be called as <code v-pre>add()</code></li>
+<li><code v-pre>argument</code> and <code v-pre>otherargument</code> are, of course, called the &quot;Arguments&quot; for the function. An Argument&#x27;s name must not be confused with the Parameters that are sent to the function. That is to say, in the <code v-pre>add()</code> function, <code v-pre>a</code> and <code v-pre>b</code> are the <em>arguments</em> and <code v-pre>2</code> and <code v-pre>2</code> are the <em>parameters</em> sent to it.</li>
+<li><code v-pre>return</code> is a special keyword that does two very distinct things: first, it returns a value that&#x27;s after it. So, <code v-pre>return 2;</code> will return the integer <code v-pre>2</code> to whatever called that function. Second, it <em>stops the execution of the function</em>. This means that anything <em>after</em> a return keyword will not execute. This is useful if you want to stop execution based on a condition. For example:</li>
+</ul>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">// Stop execution if either arguments are missing: 
+function add(a, b) {
+  if(!a || !b) return false;
+  return a + b;
+};</code></pre>
+</doc-codeblock></div>
+<p>The above will return <code v-pre>false</code> if either the <code v-pre>a</code> or <code v-pre>b</code> parameter is missing. The <code v-pre>a+b</code> line will simply never even be executed, which can save a lot of processing power in larger code.</p>
+<doc-anchor-target id="optional-arguments">
+    <h3>
+        <doc-anchor-trigger class="header-anchor-trigger" to="#optional-arguments">#</doc-anchor-trigger>
+        <span>Optional Arguments</span>
+    </h3>
+</doc-anchor-target>
+<p>In the previous examples, <code v-pre>a</code> and <code v-pre>b</code> were <em>required</em> arguments, meaning that you could not call the add function without both arguments being present (otherwise, they would be <code v-pre>null</code> and our calculation would fail). You can, however, give a function <em>optional</em> arguments with a default value assigned.</p>
+<p>Let&#x27;s say we want <code v-pre>add()</code> to increment by 1 only, if the second value is not present, instead of stopping the function. This is done by assigning a default value to <code v-pre>b</code> when we create the function:</p>
+<div class="codeblock-wrapper"><doc-codeblock>
+<pre class="language-javascript"><code v-pre class="language-javascript">function add(a, b = 1) {
+  // We're still stopping the function if a is missing)
+  if(!a) return false; 
+  return a + b;
+}
+
+console.log(add(5)); // 6</code></pre>
+</doc-codeblock></div>
 
 
 
@@ -231,10 +281,10 @@
     </div>
 
     <div class="w-1/2">
-        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/functions/using-and-calling-functions/">
+        <a class="px-5 py-4 -mx-px h-full flex items-center justify-end break-all md:break-normal font-medium text-blue-500 dark:text-blue-400 border border-gray-300 hover:border-gray-400 dark:border-dark-650 dark:hover:border-dark-450 rounded-r-lg transition-colors duration-150 relative hover:z-5" href="/functions/es6-functions/">
             <span>
                 <span class="block text-xs font-normal text-right text-gray-400 dark:text-dark-400">Next</span>
-                <span class="block mt-1">Using and Calling Functions</span>
+                <span class="block mt-1">ES6 functions</span>
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="ml-3" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" overflow="visible"><path d="M19.92 12.38a1 1 0 00-.22-1.09l-7-7a.996.996 0 10-1.41 1.41l5.3 5.3H5c-.55 0-1 .45-1 1s.45 1 1 1h11.59l-5.29 5.29a.996.996 0 000 1.41c.19.2.44.3.7.3s.51-.1.71-.29l7-7c.09-.09.16-.21.21-.33z" /><path fill="none" d="M0 0h24v24H0z" /></svg>
         </a>
@@ -251,7 +301,7 @@
 </ul>
 
     </div>
-    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2021. All rights reserved.</p>
+    <div class="docs-copyright py-2 text-gray-500 dark:text-dark-350 text-sm leading-relaxed"><p>© Copyright 2022. All rights reserved.</p>
 </div>
 </footer>
 
