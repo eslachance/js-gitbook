@@ -115,10 +115,10 @@ In the line of "just like the last one", Array.every() does the same thing as .s
 
 ```javascript
 const vals = ["John", "Paul", "Ringo", "George", "Pete"];
-const missingA = vals.some(name => !name.includes("a"));
+const missingA = vals.every(name => !name.includes("a"));
 // false, one of them contains an A
 
-const missingM = vals.some(name => !name.includes("m"));
+const missingM = vals.every(name => !name.includes("m"));
 // true, none of them contains a M
 ```
 
